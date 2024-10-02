@@ -1,68 +1,10 @@
 import { Button, Layout, Menu } from "antd";
-import {
-	TeamOutlined,
-	UserOutlined,
-	MenuFoldOutlined,
-	MenuUnfoldOutlined,
-} from "@ant-design/icons";
-import { Outlet, NavLink, useLocation } from "react-router-dom";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Outlet, useLocation, Link } from "react-router-dom";
 import React, { useState } from "react";
-import { PiBooks } from "react-icons/pi";
-import { logo } from "../constants";
+import { logo, menuItems } from "../utilities/constants";
 
 const { Header, Content, Footer, Sider } = Layout;
-
-const menuItems = [
-	{
-		key: "1",
-		icon: <UserOutlined />,
-		label: <NavLink to="/">Student Portal</NavLink>,
-	},
-	{
-		key: "2",
-		icon: <TeamOutlined />,
-		label: <NavLink to="/faculty-overview">Faculty Overview</NavLink>,
-	},
-	{
-		key: "3",
-		icon: <PiBooks />,
-		label: <NavLink to="/course-registration">Enroll in Courses</NavLink>,
-	},
-	{
-		key: "sub1",
-		icon: <UserOutlined />,
-		label: "User",
-		children: [
-			{
-				key: "4",
-				label: <NavLink to="/user/tom">Tom</NavLink>,
-			},
-			{
-				key: "5",
-				label: <NavLink to="/user/bill">Bill</NavLink>,
-			},
-			{
-				key: "6",
-				label: <NavLink to="/user/alex">Alex</NavLink>,
-			},
-		],
-	},
-	{
-		key: "sub2",
-		icon: <TeamOutlined />,
-		label: "Team",
-		children: [
-			{
-				key: "7",
-				label: <NavLink to="/team/1">Team 1</NavLink>,
-			},
-			{
-				key: "8",
-				label: <NavLink to="/team/2">Team 2</NavLink>,
-			},
-		],
-	},
-];
 
 const Root: React.FC = () => {
 	const [collapsed, setCollapsed] = useState(false);
@@ -115,36 +57,38 @@ const Root: React.FC = () => {
 					/>
 				</Sider>
 				<Content className="overflow-y-auto">
-					<Header className="flex justify-between items-center sticky top-0 w-full">
-						<figure className="flex-1 flex justify-start items-center gap-4">
-							<Button
-								className="md:hidden"
-								type="text"
-								icon={
-									collapsed ? (
-										<MenuUnfoldOutlined />
-									) : (
-										<MenuFoldOutlined />
-									)
-								}
-								onClick={() => {
-									setSidebarVisible(!sidebarVisible);
-								}}
-								style={{
-									fontSize: "16px",
-									width: 64,
-									height: 64,
-								}}
-							/>
-							<img
-								className="w-8 md:w-12"
-								src={logo}
-								alt="Logo"
-							/>
-							<figcaption className="text-white text-lg md:text-2xl font-bold">
-								OceanCapp University
-							</figcaption>
-						</figure>
+					<Header className="flex justify-between items-center sticky top-0 w-full px-4">
+						<Button
+							className="md:hidden"
+							type="text"
+							icon={
+								collapsed ? (
+									<MenuUnfoldOutlined />
+								) : (
+									<MenuFoldOutlined />
+								)
+							}
+							onClick={() => {
+								setSidebarVisible(!sidebarVisible);
+							}}
+							style={{
+								fontSize: "16px",
+								width: 64,
+								height: 64,
+							}}
+						/>
+						<Link className="flex-1" to="/">
+							<figure className="flex justify-start items-center gap-4">
+								<img
+									className="w-8 md:w-12"
+									src={logo}
+									alt="Logo"
+								/>
+								<figcaption className="text-white text-lg md:text-2xl font-bold">
+									OceanCapp University
+								</figcaption>
+							</figure>
+						</Link>
 						<Menu
 							className="hidden md:block flex-1"
 							theme="dark"

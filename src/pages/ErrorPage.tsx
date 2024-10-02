@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Empty, Typography } from "antd";
 import { Link } from "react-router-dom";
-import { empty } from "../constants";
+import { empty } from "../utilities/constants";
 
 const ErrorPage: React.FC = () => {
 	return (
