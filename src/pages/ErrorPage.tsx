@@ -1,12 +1,13 @@
 import React from "react";
 import { Button, Empty, Typography } from "antd";
 import { Link } from "react-router-dom";
+import { logo } from "../constants";
 
 const ErrorPage: React.FC = () => {
 	return (
 		<section className="flex justify-center items-center">
 			<Empty
-				image="/src/assets/empty.svg"
+				image={logo}
 				imageStyle={{
 					height: "50vh",
 					display: "flex",

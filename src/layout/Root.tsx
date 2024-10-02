@@ -4,6 +4,7 @@ import { TeamOutlined, UserOutlined } from "@ant-design/icons";
 import { Outlet } from "react-router-dom";
 import React, { useState } from "react";
 import { PiBooks } from "react-icons/pi";
+import { logo } from "../constants";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -66,7 +67,7 @@ const Root = () => {
 						<figure className="flex items-center">
 							<img
 								className="h-full w-12"
-								src="/src/assets/oceancapp.png"
+								src={logo}
 								alt="Logo"
 							/>
 							<figcaption className="text-white">
