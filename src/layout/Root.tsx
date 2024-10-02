@@ -1,5 +1,10 @@
-import { Layout, Menu } from "antd";
-import { TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Layout, Menu } from "antd";
+import {
+	TeamOutlined,
+	UserOutlined,
+	MenuFoldOutlined,
+	MenuUnfoldOutlined,
+} from "@ant-design/icons";
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import React, { useState } from "react";
 import { PiBooks } from "react-icons/pi";
@@ -61,6 +66,7 @@ const menuItems = [
 
 const Root: React.FC = () => {
 	const [collapsed, setCollapsed] = useState(false);
+	const [sidebarVisible, setSidebarVisible] = useState(false);
 	const location = useLocation();
 
 	const getSelectedKey = () => {
@@ -85,17 +91,22 @@ const Root: React.FC = () => {
 	};
 
 	return (
-		<Layout style={{ minHeight: "100vh" }}>
-			<Layout>
+		<Layout className="min-h-screen">
+			<Layout className="relative h-[calc(100vh-64px)]">
 				<Sider
-					className="hidden lg:block min-h-screen overflow-y-auto"
+					className={`${
+						sidebarVisible
+							? "opacity-100 w-full"
+							: "opacity-0 -translate-x-full w-0 md:opacity-100 md:w-full md:translate-x-0"
+					}
+					 md:block h-[calc(100vh-64px)] overflow-y-auto transition-all duration-700 overflow-x-hidden absolute top-16 backdrop-filter backdrop-blur-sm bg-opacity-75`}
 					collapsible
 					collapsed={collapsed}
 					onCollapse={(value) => setCollapsed(value)}
 				>
-					<figure className="my-2 ml-6">
+					{/* <figure className="my-2 ml-6">
 						<img className="w-12" src={logo} alt="Logo" />
-					</figure>
+					</figure> */}
 					<Menu
 						mode="inline"
 						theme="dark"
@@ -103,14 +114,34 @@ const Root: React.FC = () => {
 						items={menuItems}
 					/>
 				</Sider>
-				<Content style={{ height: "100vh", overflowY: "auto" }}>
-					<Header
-						style={{ display: "flex", alignItems: "center" }}
-						className="flex justify-between items-center"
-					>
+				<Content className="overflow-y-auto">
+					<Header className="flex justify-between items-center sticky top-0 w-full">
 						<figure className="flex-1 flex justify-start items-center gap-4">
-							<img className="w-12" src={logo} alt="Logo" />
-							<figcaption className="text-white text-2xl font-bold">
+							<Button
+								className="md:hidden"
+								type="text"
+								icon={
+									collapsed ? (
+										<MenuUnfoldOutlined />
+									) : (
+										<MenuFoldOutlined />
+									)
+								}
+								onClick={() => {
+									setSidebarVisible(!sidebarVisible);
+								}}
+								style={{
+									fontSize: "16px",
+									width: 64,
+									height: 64,
+								}}
+							/>
+							<img
+								className="w-8 md:w-12"
+								src={logo}
+								alt="Logo"
+							/>
+							<figcaption className="text-white text-lg md:text-2xl font-bold">
 								OceanCapp University
 							</figcaption>
 						</figure>
