@@ -80,13 +80,13 @@ const Navbar: React.FC = () => {
 			<Header className="flex justify-start md:justify-between items-center sticky top-0 w-full px-0 md:px-4">
 				<Button
 					ref={navButtonRef}
-					className="md:hidden text-white"
+					className="md:hidden text-white transition-all duration-500 hover:!text-blue-300"
 					type="text"
 					icon={
 						collapsed ? (
-							<MenuUnfoldOutlined />
+							<MenuUnfoldOutlined className="!text-3xl" />
 						) : (
-							<MenuFoldOutlined />
+							<MenuFoldOutlined className="!text-3xl" />
 						)
 					}
 					onClick={() => {
