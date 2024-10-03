@@ -5,14 +5,26 @@ export interface MenuItem {
 	children?: MenuItem[];
 }
 
-export interface Course {
+export interface CourseTaken {
 	courseId: string;
 	courseName: string;
 	professorName: string;
 	professorEmail: string;
 	grade?: string;
-	credits: number;
 	semester: string;
+	credits: number;
+	duration: string;
+}
+
+export interface CourseReg {
+	courseId: string;
+	courseName: string;
+	professorName: string;
+	professorEmail: string;
+	credits: number;
+	department: string;
+	capacity: number;
+	enrolled: number;
 	duration: string;
 }
 
@@ -30,19 +42,9 @@ export interface StudentData {
 	admissionDate: Date;
 	currentSemester: string;
 	expectedGraduationDate: Date;
-	courses: Course[];
-	finishedCourses: Course[];
+	courses: CourseTaken[];
+	finishedCourses: CourseTaken[];
 	upcomingEvents: Event[];
-}
-
-export interface CourseRegistration {
-	courseId: string;
-	courseName: string;
-	credits: number;
-	department: string;
-	semester: string;
-	capacity: number;
-	enrolled: number;
 }
 
 export interface Faculty {

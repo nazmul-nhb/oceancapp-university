@@ -85,10 +85,10 @@ export const studentData: StudentData = {
 		// Spring 2023
 		{
 			courseId: "HIST101",
-			courseName: "World History",
-			professorName: "Dr. Albert Einstein",
+			courseName: "World History I",
+			professorName: "Dr. Edward Said",
 			professorEmail: "aeinstein@oceancapp.uni.edu",
-			grade: "A",
+			grade: "A-",
 			credits: 3,
 			semester: "Spring 2023",
 			duration: "4 months",

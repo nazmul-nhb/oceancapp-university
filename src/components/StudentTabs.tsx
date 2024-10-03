@@ -5,11 +5,11 @@ import {
 	CheckCircleOutlined,
 	CalendarOutlined,
 } from "@ant-design/icons";
-import { Course, Event } from "../types/interfaces";
+import { CourseTaken, Event } from "../types/interfaces";
 
 interface TabProps {
-	courses: Course[];
-	finishedCourses: Course[];
+	courses: CourseTaken[];
+	finishedCourses: CourseTaken[];
 	upcomingEvents: Event[];
 }
 
@@ -19,6 +19,7 @@ const StudentTabs: React.FC<TabProps> = ({
 	upcomingEvents,
 }) => {
 	return (
+		// TODO: Redesign the courses and events data
 		<ConfigProvider
 			theme={{
 				token: {
