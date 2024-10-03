@@ -11,6 +11,7 @@
 	},
 	"dependencies": {
 		"antd": "^5.21.2",
+		"color-generator-fl": "^1.2.3",
 		"localforage": "^1.10.0",
 		"match-sorter": "^6.3.4",
 		"moment": "^2.30.1",

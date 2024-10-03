@@ -13,8 +13,6 @@ const CourseRegistration: React.FC = () => {
 		setCourses(updatedCourses);
 	};
 
-	console.log(courses.length);
-
 	return (
 		<section className="min-h-[calc(100vh-64px)] px-8 py-5">
 			{courses.map((course) => (
