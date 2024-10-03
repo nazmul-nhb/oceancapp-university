@@ -1,7 +1,7 @@
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Layout, Menu } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Outlet, useLocation, Link } from "react-router-dom";
-import React, { useState } from "react";
 import { logo, menuItems } from "../utilities/constants";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -9,6 +9,8 @@ const { Header, Content, Footer, Sider } = Layout;
 const Root: React.FC = () => {
 	const [collapsed, setCollapsed] = useState(false);
 	const [sidebarVisible, setSidebarVisible] = useState(false);
+	const sidebarRef = useRef<HTMLDivElement>(null);
+	const navButtonRef = useRef<HTMLButtonElement>(null);
 	const location = useLocation();
 
 	const getSelectedKey = () => {
@@ -32,10 +34,30 @@ const Root: React.FC = () => {
 		return selectedKeys.length > 0 ? selectedKeys : ["1"];
 	};
 
+	useEffect(() => {
+		const handleClickOutside = (e: MouseEvent) => {
+			if (
+				sidebarRef.current &&
+				!sidebarRef.current.contains(e.target as Node) &&
+				navButtonRef.current &&
+				!navButtonRef.current.contains(e.target as Node)
+			) {
+				setSidebarVisible(false);
+			}
+		};
+
+		document.addEventListener("mouseup", handleClickOutside);
+
+		return () => {
+			document.removeEventListener("mouseup", handleClickOutside);
+		};
+	}, [sidebarRef]);
+
 	return (
 		<Layout className="min-h-screen">
 			<Layout className="relative h-[calc(100vh-64px)]">
 				<Sider
+					ref={sidebarRef}
 					className={`${
 						sidebarVisible
 							? "opacity-100 w-full"
@@ -56,10 +78,11 @@ const Root: React.FC = () => {
 						items={menuItems}
 					/>
 				</Sider>
-				<Content className="overflow-y-auto">
-					<Header className="flex justify-between items-center sticky top-0 w-full px-4">
+				<Content className="overflow-y-auto oceancapp-scrollbar">
+					<Header className="flex justify-start md:justify-between items-center sticky top-0 w-full px-0 md:px-4">
 						<Button
-							className="md:hidden"
+							ref={navButtonRef}
+							className="md:hidden text-white"
 							type="text"
 							icon={
 								collapsed ? (
@@ -70,6 +93,7 @@ const Root: React.FC = () => {
 							}
 							onClick={() => {
 								setSidebarVisible(!sidebarVisible);
+								setCollapsed(false);
 							}}
 							style={{
 								fontSize: "16px",
@@ -77,7 +101,7 @@ const Root: React.FC = () => {
 								height: 64,
 							}}
 						/>
-						<Link className="flex-1" to="/">
+						<Link to="/">
 							<figure className="flex justify-start items-center gap-4">
 								<img
 									className="w-8 md:w-12"
@@ -90,7 +114,7 @@ const Root: React.FC = () => {
 							</figure>
 						</Link>
 						<Menu
-							className="hidden md:block flex-1"
+							className="hidden md:block"
 							theme="dark"
 							mode="horizontal"
 							selectedKeys={getSelectedKey()}
