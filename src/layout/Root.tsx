@@ -3,12 +3,15 @@ import { Button, Layout, Menu } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Outlet, useLocation, Link } from "react-router-dom";
 import { logo, menuItems } from "../utilities/constants";
+import { useMediaQuery } from "react-responsive";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const Root: React.FC = () => {
 	const [collapsed, setCollapsed] = useState(false);
 	const [sidebarVisible, setSidebarVisible] = useState(false);
+	const isMediumOrLarger = useMediaQuery({ query: "(min-width: 768px)" });
+
 	const sidebarRef = useRef<HTMLDivElement>(null);
 	const navButtonRef = useRef<HTMLButtonElement>(null);
 	const location = useLocation();
@@ -54,7 +57,7 @@ const Root: React.FC = () => {
 	}, [sidebarRef]);
 
 	return (
-		<Layout className="min-h-screen">
+		<Layout className="min-h-screen scrollbar-hide">
 			<Layout className="relative h-[calc(100vh-64px)]">
 				<Sider
 					ref={sidebarRef}
@@ -113,13 +116,14 @@ const Root: React.FC = () => {
 								</figcaption>
 							</figure>
 						</Link>
-						<Menu
-							className="hidden md:block"
-							theme="dark"
-							mode="horizontal"
-							selectedKeys={getSelectedKey()}
-							items={menuItems}
-						/>
+						{isMediumOrLarger && (
+							<Menu
+								theme="dark"
+								mode="horizontal"
+								selectedKeys={getSelectedKey()}
+								items={menuItems}
+							/>
+						)}
 					</Header>
 					<Outlet />
 					<Footer style={{ textAlign: "center" }}>
