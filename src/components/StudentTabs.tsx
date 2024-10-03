@@ -18,8 +18,65 @@ const StudentTabs: React.FC<TabProps> = ({
 	finishedCourses,
 	upcomingEvents,
 }) => {
+	// Define the tab items
+	const tabItems = [
+		{
+			key: "1",
+			label: (
+				<span>
+					<BookOutlined /> Current Courses
+				</span>
+			),
+			children: (
+				<ul>
+					{courses.map((course) => (
+						<li key={course.courseId}>
+							<strong>{course.courseName}</strong> -{" "}
+							{course.professorName} ({course.credits} credits)
+						</li>
+					))}
+				</ul>
+			),
+		},
+		{
+			key: "2",
+			label: (
+				<span>
+					<CheckCircleOutlined /> Finished Courses
+				</span>
+			),
+			children: (
+				<ul>
+					{finishedCourses.map((course) => (
+						<li key={course.courseId}>
+							<strong>{course.courseName}</strong> -{" "}
+							{course.professorName} (Grade: {course.grade})
+						</li>
+					))}
+				</ul>
+			),
+		},
+		{
+			key: "3",
+			label: (
+				<span>
+					<CalendarOutlined /> Upcoming Events
+				</span>
+			),
+			children: (
+				<ul>
+					{upcomingEvents.map((event) => (
+						<li key={event.eventId}>
+							<strong>{event.title}</strong> -{" "}
+							{event.date.toDateString()} ({event.description})
+						</li>
+					))}
+				</ul>
+			),
+		},
+	];
+
 	return (
-		// TODO: Redesign the courses and events data
 		<ConfigProvider
 			theme={{
 				token: {
@@ -29,61 +86,12 @@ const StudentTabs: React.FC<TabProps> = ({
 				},
 			}}
 		>
-			<Tabs size="large" animated={true} defaultActiveKey="1">
-				<Tabs.TabPane
-					tab={
-						<span className="">
-							<BookOutlined /> Current Courses
-						</span>
-					}
-					key="1"
-				>
-					<ul>
-						{courses.map((course) => (
-							<li key={course.courseId}>
-								<strong>{course.courseName}</strong> -{" "}
-								{course.professorName} ({course.credits}{" "}
-								credits)
-							</li>
-						))}
-					</ul>
-				</Tabs.TabPane>
-				<Tabs.TabPane
-					tab={
-						<span>
-							<CheckCircleOutlined /> Finished Courses
-						</span>
-					}
-					key="2"
-				>
-					<ul>
-						{finishedCourses.map((course) => (
-							<li key={course.courseId}>
-								<strong>{course.courseName}</strong> -{" "}
-								{course.professorName} (Grade: {course.grade})
-							</li>
-						))}
-					</ul>
-				</Tabs.TabPane>
-				<Tabs.TabPane
-					tab={
-						<span>
-							<CalendarOutlined /> Upcoming Events
-						</span>
-					}
-					key="3"
-				>
-					<ul>
-						{upcomingEvents.map((event) => (
-							<li key={event.eventId}>
-								<strong>{event.title}</strong> -{" "}
-								{event.date.toDateString()} ({event.description}
-								)
-							</li>
-						))}
-					</ul>
-				</Tabs.TabPane>
-			</Tabs>
+			<Tabs
+				size="large"
+				animated={true}
+				defaultActiveKey="1"
+				items={tabItems}
+			/>
 		</ConfigProvider>
 	);
 };

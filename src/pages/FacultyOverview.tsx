@@ -14,7 +14,7 @@ const FacultyOverview: React.FC = () => {
 	);
 	const uniqueSubjects = Array.from(
 		new Set(facultyList.flatMap((faculty) => faculty.subjects))
-	);
+	).sort();
 
 	// Filter faculty members based on the search term and selected options
 	const filteredFaculty = facultyList.filter((faculty: Faculty) => {
