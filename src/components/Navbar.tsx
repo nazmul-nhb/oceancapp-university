@@ -117,6 +117,7 @@ const Navbar: React.FC = () => {
 				{/* Show menu only if the device screen size >= 768px */}
 				{isMediumOrLarger && (
 					<Menu
+						className="font-bold text-lg"
 						theme="dark"
 						mode="horizontal"
 						selectedKeys={getSelectedKey()}
