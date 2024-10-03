@@ -25,6 +25,7 @@ const Navbar: React.FC = () => {
 						// Check if `label` is a React element before accessing `props`
 						return (
 							React.isValidElement(child.label) &&
+							// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 							child.label.props.to === currentPath
 						);
 					})
@@ -33,6 +34,7 @@ const Navbar: React.FC = () => {
 				} else {
 					// Check if `label` is a React element before accessing `props`
 					return React.isValidElement(item.label) &&
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 						item.label.props.to === currentPath
 						? item.key
 						: null;
