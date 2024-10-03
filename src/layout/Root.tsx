@@ -11,7 +11,7 @@ const Root: React.FC = () => {
 			<Layout className="relative h-[calc(100vh-64px)]">
 				<Content className="overflow-y-auto oceancapp-scrollbar">
 					<Navbar />
-					<div className="md:ml-20">
+					<div className="md:ml-20 bg-oceancapp-secondary/50">
 						<Outlet />
 						<Footer style={{ textAlign: "center" }}>
 							OceanCapp University &copy;{" "}

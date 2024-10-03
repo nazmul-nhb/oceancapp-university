@@ -109,7 +109,7 @@ const Navbar: React.FC = () => {
 				<Link to="/">
 					<figure className="flex justify-start items-center gap-4">
 						<img className="w-8 md:w-12" src={logo} alt="Logo" />
-						<figcaption className="text-white text-lg md:text-2xl font-bold">
+						<figcaption className="text-white text-lg md:text-2xl font-bold font-hallelujah">
 							OceanCapp University
 						</figcaption>
 					</figure>
