@@ -31,6 +31,7 @@ export interface StudentData {
 	currentSemester: string;
 	expectedGraduationDate: Date;
 	courses: Course[];
+	finishedCourses: Course[];
 	upcomingEvents: Event[];
 }
 

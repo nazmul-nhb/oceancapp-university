@@ -9,10 +9,10 @@ const { Content } = Layout;
 const Root: React.FC = () => {
 	return (
 		<Layout className="min-h-screen">
-			<Layout className="relative h-[calc(100vh-64px)]">
+			<Layout className="relative h-[calc(100vh-64px)] !bg-oceancapp-secondary/50">
 				<Content className="overflow-y-auto oceancapp-scrollbar">
 					<Navbar />
-					<div className="md:ml-20 bg-oceancapp-secondary/50">
+					<div className="md:ml-20">
 						<Outlet />
 					</div>
 					<Footer />

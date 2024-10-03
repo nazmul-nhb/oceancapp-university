@@ -74,19 +74,20 @@ const Navbar: React.FC = () => {
 						? "w-full"
 						: "-translate-x-full w-0 md:w-full md:translate-x-0"
 				}
-					backdrop-filter backdrop-blur-md bg-opacity-75 md:block h-[calc(100vh-64px)] overflow-y-auto transition-all duration-1000 overflow-x-hidden absolute top-16`}
+					md:block h-[calc(100vh-64px)] overflow-y-auto transition-all duration-1000 overflow-x-hidden absolute top-16 backdrop-filter backdrop-blur-sm bg-oceancapp-primary/85 z-10`}
 				collapsible
 				collapsed={collapsed}
 				onCollapse={(value) => setCollapsed(value)}
 			>
 				<Menu
+					className="!bg-transparent"
 					mode="inline"
 					theme="dark"
 					selectedKeys={getSelectedKey()}
 					items={menuItems}
 				/>
 			</Sider>
-			<Header className="backdrop-filter backdrop-blur-md bg-opacity-30 flex justify-start md:justify-between items-center sticky top-0 w-full px-0 md:px-4">
+			<Header className="bg-opacity-30 flex justify-start md:justify-between items-center sticky top-0 w-full px-0 md:px-4 backdrop-filter backdrop-blur-sm bg-oceancapp-primary/85 z-10">
 				<Button
 					ref={navButtonRef}
 					className="md:hidden text-white transition-all duration-500 hover:!text-blue-300"
@@ -119,7 +120,7 @@ const Navbar: React.FC = () => {
 				{/* Show menu only if the device screen size >= 768px */}
 				{isMediumOrLarger && (
 					<Menu
-						className="font-bold text-lg"
+						className="font-bold text-lg !bg-transparent"
 						theme="dark"
 						mode="horizontal"
 						selectedKeys={getSelectedKey()}
