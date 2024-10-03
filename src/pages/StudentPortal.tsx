@@ -73,7 +73,7 @@ const StudentPortal: React.FC = () => {
 								{event.title}
 							</h3>
 							<p className="text-gray-600">
-								{new Date(event.date).toLocaleDateString()}
+								{formatDate(event.date)}
 							</p>
 							<p className="text-gray-600">{event.description}</p>
 						</div>
