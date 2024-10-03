@@ -2,10 +2,12 @@ import logo from "../assets/oceancapp.png";
 import empty from "../assets/empty.svg";
 
 import { NavLink } from "react-router-dom";
-import { TeamOutlined, UserOutlined } from "@ant-design/icons";
 import { PiBooks } from "react-icons/pi";
+import { TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { MenuItem } from "../types/interfaces";
 
-const menuItems = [
+// Navbar & Sidebar menu items
+const menuItems: MenuItem[] = [
 	{
 		key: "1",
 		icon: <UserOutlined />,

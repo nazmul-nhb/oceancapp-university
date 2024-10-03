@@ -4,6 +4,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
 import { logo, menuItems } from "../utilities/constants";
 import { useMediaQuery } from "react-responsive";
+import { MenuItem } from "../types/interfaces";
 
 const { Header, Sider } = Layout;
 
@@ -11,7 +12,6 @@ const Navbar: React.FC = () => {
 	const [collapsed, setCollapsed] = useState(true);
 	const [sidebarVisible, setSidebarVisible] = useState(false);
 	const isMediumOrLarger = useMediaQuery({ query: "(min-width: 768px)" });
-
 	const sidebarRef = useRef<HTMLDivElement>(null);
 	const navButtonRef = useRef<HTMLButtonElement>(null);
 	const location = useLocation();
@@ -19,15 +19,21 @@ const Navbar: React.FC = () => {
 	const getSelectedKey = () => {
 		const currentPath = location.pathname;
 		const selectedKeys = menuItems
-			.map((item) => {
+			.map((item: MenuItem) => {
 				if (item.children) {
-					return item.children.find(
-						(child) => child.label.props.to === currentPath
-					)
+					return item.children.find((child) => {
+						// Check if `label` is a React element before accessing `props`
+						return (
+							React.isValidElement(child.label) &&
+							child.label.props.to === currentPath
+						);
+					})
 						? item.key
 						: null;
 				} else {
-					return item.label.props.to === currentPath
+					// Check if `label` is a React element before accessing `props`
+					return React.isValidElement(item.label) &&
+						item.label.props.to === currentPath
 						? item.key
 						: null;
 				}
@@ -37,6 +43,7 @@ const Navbar: React.FC = () => {
 		return selectedKeys.length > 0 ? selectedKeys : ["1"];
 	};
 
+	// When clicked outside sidebar hide it
 	useEffect(() => {
 		const handleClickOutside = (e: MouseEvent) => {
 			if (
@@ -62,10 +69,10 @@ const Navbar: React.FC = () => {
 				ref={sidebarRef}
 				className={`${
 					sidebarVisible
-						? "opacity-100 w-full"
-						: "opacity-0 -translate-x-full w-0 md:opacity-100 md:w-full md:translate-x-0"
+						? "w-full"
+						: "-translate-x-full w-0 md:w-full md:translate-x-0"
 				}
-					 md:block h-[calc(100vh-64px)] overflow-y-auto transition-all duration-700 overflow-x-hidden absolute top-16 backdrop-filter backdrop-blur-sm bg-opacity-75`}
+					backdrop-filter backdrop-blur-md bg-opacity-75 md:block h-[calc(100vh-64px)] overflow-y-auto transition-all duration-1000 overflow-x-hidden absolute top-16`}
 				collapsible
 				collapsed={collapsed}
 				onCollapse={(value) => setCollapsed(value)}
@@ -77,7 +84,7 @@ const Navbar: React.FC = () => {
 					items={menuItems}
 				/>
 			</Sider>
-			<Header className="flex justify-start md:justify-between items-center sticky top-0 w-full px-0 md:px-4">
+			<Header className="backdrop-filter backdrop-blur-md bg-opacity-30 flex justify-start md:justify-between items-center sticky top-0 w-full px-0 md:px-4">
 				<Button
 					ref={navButtonRef}
 					className="md:hidden text-white transition-all duration-500 hover:!text-blue-300"
@@ -107,6 +114,7 @@ const Navbar: React.FC = () => {
 						</figcaption>
 					</figure>
 				</Link>
+				{/* Show menu only if the device screen size >= 768px */}
 				{isMediumOrLarger && (
 					<Menu
 						theme="dark"
