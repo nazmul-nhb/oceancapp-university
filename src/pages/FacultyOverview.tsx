@@ -5,30 +5,70 @@ import { getColorForFirstCharacter } from "color-generator-fl";
 
 const FacultyOverview: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState<string>("");
+	const [selectedDesignation, setSelectedDesignation] = useState<string>("");
+	const [selectedSubject, setSelectedSubject] = useState<string>("");
 
-	// Filter faculty members based on the search term (matching name, designation, or subjects)
-	const filteredFaculty = facultyList.filter(
-		(faculty: Faculty) =>
-			faculty.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			faculty.designation
-				.toLowerCase()
-				.includes(searchTerm.toLowerCase()) ||
-			faculty.subjects.some((subject) =>
-				subject.toLowerCase().includes(searchTerm.toLowerCase())
-			)
+	// Generate unique designations and subjects
+	const uniqueDesignations = Array.from(
+		new Set(facultyList.map((faculty) => faculty.designation))
 	);
+	const uniqueSubjects = Array.from(
+		new Set(facultyList.flatMap((faculty) => faculty.subjects))
+	);
+
+	// Filter faculty members based on the search term and selected options
+	const filteredFaculty = facultyList.filter((faculty: Faculty) => {
+		const matchesName = faculty.name
+			.toLowerCase()
+			.includes(searchTerm.toLowerCase());
+		const matchesDesignation = selectedDesignation
+			? faculty.designation === selectedDesignation
+			: true;
+		const matchesSubject = selectedSubject
+			? faculty.subjects.includes(selectedSubject)
+			: true;
+
+		return matchesName && matchesDesignation && matchesSubject;
+	});
 
 	return (
 		<section className="min-h-[calc(100vh-64px)] px-8 py-5">
-			{/* Search bar */}
-			<div className="mb-6 flex items-center justify-center">
+			{/* Filters */}
+			<div className="mb-6 flex gap-6">
+				{/* Search with name */}
 				<input
 					type="text"
-					placeholder="Search faculty by name, designation, or subject"
+					placeholder="Search faculty by name"
 					value={searchTerm}
 					onChange={(e) => setSearchTerm(e.target.value)}
-					className="w-full max-w-md p-3 border border-gray-300 rounded-md focus:outline-none"
+					className="flex-wrap w-full max-w-md p-3 border border-gray-300 rounded-md focus:outline-none"
 				/>
+				{/* Filter with Designation */}
+				<select
+					value={selectedDesignation}
+					onChange={(e) => setSelectedDesignation(e.target.value)}
+					className="flex-wrap w-full max-w-md p-3 border border-gray-300 rounded-md focus:outline-none"
+				>
+					<option value="">Select Designation</option>
+					{uniqueDesignations.map((designation, index) => (
+						<option key={index} value={designation}>
+							{designation}
+						</option>
+					))}
+				</select>
+				{/* Filter with subject */}
+				<select
+					value={selectedSubject}
+					onChange={(e) => setSelectedSubject(e.target.value)}
+					className="flex-wrap w-full max-w-md p-3 border border-gray-300 rounded-md focus:outline-none oceancapp-scrollbar"
+				>
+					<option value="">Select Subject</option>
+					{uniqueSubjects.map((subject, index) => (
+						<option key={index} value={subject}>
+							{subject}
+						</option>
+					))}
+				</select>
 			</div>
 
 			{/* Faculty list */}
