@@ -3,6 +3,10 @@ import { DownOutlined } from "@ant-design/icons";
 import { Form, Input, Button, Select } from "antd";
 import { CourseReg, RegistrationInfo } from "../types/interfaces";
 import toast from "react-hot-toast";
+import {
+	getRegisteredCourses,
+	saveRegisteredCourses,
+} from "../utilities/localStorage";
 
 interface EnrollCourseProps {
 	sortedCourses: CourseReg[];
@@ -32,8 +36,35 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 
 	// Function to handle course enrollment form submission
 	const handleCourseEnrollment = (regInfo: RegistrationInfo) => {
-		console.log(regInfo);
+		const registeredCourses = getRegisteredCourses();
 		const { courseIds } = regInfo;
+
+		const coursesToRemove =
+			courseIds.length - (4 - registeredCourses.length);
+
+		const wouldBeCourses = registeredCourses.length + courseIds.length;
+
+		// Validate before registering a course
+		if (wouldBeCourses > 4) {
+			if (registeredCourses.length !== 4) {
+				return toast.error(
+					`Remove ${coursesToRemove} ${
+						coursesToRemove <= 1 ? "Course" : "Courses"
+					} to Continue!`,
+					{
+						id: "warn1",
+					}
+				);
+			}
+			return toast.error(
+				`Already Registered for ${registeredCourses.length} Courses!`,
+				{ id: "warn2" }
+			);
+		}
+
+		for (const id of courseIds) {
+			saveRegisteredCourses(id);
+		}
 
 		// Remove selected courses from the available list
 		const updatedCourses = sortedCourses.filter(
@@ -51,6 +82,7 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 
 		// Reset the form after submission
 		form.resetFields();
+		setSelectedCourses([]);
 	};
 
 	return (
