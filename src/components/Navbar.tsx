@@ -11,7 +11,7 @@ const { Header, Sider } = Layout;
 const Navbar: React.FC = () => {
 	const [collapsed, setCollapsed] = useState(true);
 	const [sidebarVisible, setSidebarVisible] = useState(false);
-	const isMediumOrLarger = useMediaQuery({ query: "(min-width: 768px)" });
+	const isLargeOrXL = useMediaQuery({ query: "(min-width: 1024px)" });
 	const sidebarRef = useRef<HTMLDivElement>(null);
 	const navButtonRef = useRef<HTMLButtonElement>(null);
 	const location = useLocation();
@@ -117,8 +117,8 @@ const Navbar: React.FC = () => {
 						</figcaption>
 					</figure>
 				</Link>
-				{/* Show menu only if the device screen size >= 768px */}
-				{isMediumOrLarger && (
+				{/* Show menu only if the device screen size >= 1024px */}
+				{isLargeOrXL && (
 					<Menu
 						className="font-bold text-lg !bg-transparent"
 						theme="dark"

@@ -4,6 +4,7 @@ import { facultyList } from "../data/faculty";
 import { Faculty } from "../types/interfaces";
 import { Helmet } from "react-helmet-async";
 import { getColorForFirstCharacter } from "color-generator-fl";
+import { UserOutlined } from "@ant-design/icons";
 
 const FacultyOverview: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState<string>("");
@@ -47,7 +48,8 @@ const FacultyOverview: React.FC = () => {
 				{/* Search by name */}
 				<Form.Item className="w-full">
 					<Input
-						placeholder="Search faculty by name"
+						prefix={<UserOutlined />}
+						placeholder="Search Faculty by Name"
 						value={searchTerm}
 						onChange={(e) => setSearchTerm(e.target.value)}
 						className="w-full max-w-md"
@@ -58,7 +60,7 @@ const FacultyOverview: React.FC = () => {
 				{/* Filter by designation */}
 				<Form.Item className="w-full">
 					<Select
-						placeholder="Select Designation"
+						placeholder="Filter Faculty by Designation"
 						value={selectedDesignation} // Initial value is null
 						onChange={(value) => setSelectedDesignation(value)}
 						className="w-full max-w-md"
@@ -81,7 +83,7 @@ const FacultyOverview: React.FC = () => {
 				{/* Filter by subject */}
 				<Form.Item className="w-full">
 					<Select
-						placeholder="Select Subject"
+						placeholder="Filter Faculty by Subject"
 						value={selectedSubject} // Initial value is null
 						onChange={(value) => setSelectedSubject(value)}
 						className="w-full max-w-md"

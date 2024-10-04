@@ -3,24 +3,19 @@ import { Form, Input, Button, Select, message } from "antd";
 import { CourseReg, RegistrationInfo } from "../types/interfaces";
 import { coursesData } from "../data/courses";
 import { Helmet } from "react-helmet-async";
+import { DownOutlined } from "@ant-design/icons";
 
-const { Option } = Select;
+const MAX_COURSE_COUNT = 4;
 
 const CourseRegistration: React.FC = () => {
 	const [courses, setCourses] = useState<CourseReg[]>(coursesData);
+	const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+
 	const [form] = Form.useForm();
 
 	// Sort the courses alphabetically
 	const sortedCourses = courses.sort((a, b) => {
-		const courseA = a.courseName.toUpperCase();
-		const courseB = b.courseName.toUpperCase();
-		if (courseA < courseB) {
-			return -1;
-		}
-		if (courseA > courseB) {
-			return 1;
-		}
-		return 0;
+		return a.courseName.localeCompare(b.courseName);
 	});
 
 	// Function to handle course enrollment form submission
@@ -45,6 +40,22 @@ const CourseRegistration: React.FC = () => {
 		form.resetFields();
 	};
 
+	const courseOptions = sortedCourses.map((course) => {
+		return {
+			value: course.courseId,
+			label: `${course.courseName} - ${course.credits} Credits`,
+		};
+	});
+
+	const suffix = (
+		<>
+			<span>
+				{selectedCourses.length} / {MAX_COURSE_COUNT}
+			</span>
+			<DownOutlined />
+		</>
+	);
+
 	return (
 		<section className="min-h-[calc(100vh-64px)] px-8 py-5">
 			<Helmet>
@@ -55,6 +66,7 @@ const CourseRegistration: React.FC = () => {
 
 			{/* Course Registration Form */}
 			<Form
+				className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
 				form={form}
 				name="courseRegistration"
 				layout="vertical"
@@ -63,7 +75,6 @@ const CourseRegistration: React.FC = () => {
 			>
 				<Form.Item
 					name="studentName"
-					label="Student Name"
 					rules={[
 						{
 							required: true,
@@ -80,7 +91,6 @@ const CourseRegistration: React.FC = () => {
 
 				<Form.Item
 					name="email"
-					label="Your Email Address"
 					rules={[
 						{
 							required: true,
@@ -97,7 +107,6 @@ const CourseRegistration: React.FC = () => {
 
 				<Form.Item
 					name="studentId"
-					label="Your Student ID"
 					rules={[
 						{
 							required: true,
@@ -110,44 +119,24 @@ const CourseRegistration: React.FC = () => {
 
 				<Form.Item
 					name="courseIds"
-					label="Select Courses to Enroll"
 					rules={[
 						{
 							required: true,
-							validator: (_, value: string[]) => {
-								if (!value || value.length === 0) {
-									return Promise.reject(
-										new Error(
-											"Please select at least one course"
-										)
-									);
-								} else if (value.length > 4) {
-									return Promise.reject(
-										new Error(
-											"You can select up to 4 courses only"
-										)
-									);
-								}
-								return Promise.resolve();
-							},
+							message: "Pleas, select at least 1 course",
 						},
 					]}
 				>
 					<Select
-						id="courses"
+						id="courseIds"
 						mode="multiple"
-						placeholder="Select up to 4 courses"
+						maxCount={MAX_COURSE_COUNT}
+						placeholder="Select up to 4 Courses"
 						allowClear
-					>
-						{sortedCourses.map((course) => (
-							<Option
-								key={course.courseId}
-								value={course.courseId}
-							>
-								{course.courseName} - {course.credits} Credits
-							</Option>
-						))}
-					</Select>
+						value={selectedCourses}
+						onChange={setSelectedCourses}
+						suffixIcon={suffix}
+						options={courseOptions}
+					/>
 				</Form.Item>
 
 				<Form.Item>
@@ -157,7 +146,7 @@ const CourseRegistration: React.FC = () => {
 				</Form.Item>
 			</Form>
 
-			<h3 className="text-xl mt-10 mb-3">Available Courses</h3>
+			<h3 className="text-xl mt-10 mb-3">Available Courses to Enroll</h3>
 			<div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 				{sortedCourses.map((course) => (
 					<div
