@@ -75,7 +75,14 @@ const StudentTabs: React.FC<TabProps> = ({
 						<CalendarOutlined /> Upcoming Events
 					</span>
 				),
-				children: <Events events={upcomingEvents} />,
+				children: (
+					<>
+						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
+							Add Events to Your Calendar
+						</h3>
+						<Events events={upcomingEvents} />
+					</>
+				),
 			},
 		],
 		[courses, finishedCourses, upcomingEvents]

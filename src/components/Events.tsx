@@ -72,7 +72,7 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 			</div>
 		);
 	};
-	
+
 	return (
 		<section className="flex justify-between items-start flex-col lg:flex-row gap-5">
 			<ul className="list-item space-y-3 ml-6">
@@ -84,6 +84,7 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 						</span>
 						<Tooltip title="Add to Calendar">
 							<Button
+								size="small"
 								shape="circle"
 								icon={<ScheduleOutlined />}
 								type="primary"
@@ -99,7 +100,7 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 						icon={<CaretLeftOutlined />}
 						onClick={goToPreviousMonth}
 					/>
-					<h3 className="text-lg font-bold">
+					<h3 className="text-lg font-semibold font-kreonSerif">
 						{currentDate.format("MMMM YYYY")}
 					</h3>{" "}
 					<Button
