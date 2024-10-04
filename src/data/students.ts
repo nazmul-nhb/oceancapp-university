@@ -1,4 +1,4 @@
-import { StudentData } from "../types/interfaces";
+import type { StudentData } from "../types/interfaces";
 
 export const studentData: StudentData = {
 	studentName: "John Doe",

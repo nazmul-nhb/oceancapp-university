@@ -4,7 +4,7 @@ import empty from "../assets/empty.svg";
 import { NavLink } from "react-router-dom";
 import { PiBooks } from "react-icons/pi";
 import { TeamOutlined, UserOutlined } from "@ant-design/icons";
-import { MenuItem } from "../types/interfaces";
+import type { MenuItem } from "../types/interfaces";
 
 // Navbar & Sidebar menu items
 const menuItems: MenuItem[] = [

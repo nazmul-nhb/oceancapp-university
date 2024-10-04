@@ -3,11 +3,32 @@ import type { Event } from "../types/interfaces";
 import { formatDate, formatCalendarDate } from "../utilities/utilities";
 import toast from "react-hot-toast";
 import type { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import { Calendar, Button, Popover, Tooltip } from "antd";
-import { CalendarOutlined } from "@ant-design/icons";
+import {
+	ScheduleOutlined,
+	CaretLeftOutlined,
+	CaretRightOutlined,
+} from "@ant-design/icons";
 
 const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 	const [eventsInCalendar, setEventsInCalendar] = useState<Event[]>([]);
+	const [currentDate, setCurrentDate] = useState<Dayjs>(dayjs());
+
+	// Function to move to the previous month
+	const goToPreviousMonth = () => {
+		setCurrentDate(currentDate.subtract(1, "month"));
+	};
+
+	// Function to move to the next month
+	const goToNextMonth = () => {
+		setCurrentDate(currentDate.add(1, "month"));
+	};
+
+	// When user manually changes the month in the calendar
+	const onPanelChange = (date: Dayjs) => {
+		setCurrentDate(date);
+	};
 
 	const addEventToCalendar = (event: Event) => {
 		if (!eventsInCalendar.find((e) => e.eventId === event.eventId)) {
@@ -24,9 +45,9 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 
 	// Function to render the calendar cell
 	const cellRender = (value: Dayjs) => {
-		const dateStr = value.format("YYYY-MM-DD");
+		const dateString = value.format("YYYY-MM-DD");
 		const eventsForDate = eventsInCalendar.filter(
-			(event) => formatCalendarDate(event.date) === dateStr
+			(event) => formatCalendarDate(event.date) === dateString
 		);
 
 		return (
@@ -62,7 +83,7 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 						<Tooltip title="Add to Calendar">
 							<Button
 								shape="circle"
-								icon={<CalendarOutlined />}
+								icon={<ScheduleOutlined />}
 								type="primary"
 								onClick={() => addEventToCalendar(event)}
 							/>
@@ -71,10 +92,25 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 				))}
 			</ul>
 			<div className="w-80 !rounded-lg">
+				<div className="calendar-controls flex justify-between mb-4">
+					<Button
+						icon={<CaretLeftOutlined />}
+						onClick={goToPreviousMonth}
+					/>
+					<h3 className="text-lg font-bold">
+						{currentDate.format("MMMM YYYY")}
+					</h3>{" "}
+					<Button
+						icon={<CaretRightOutlined />}
+						onClick={goToNextMonth}
+					/>
+				</div>
 				<Calendar
 					className="bg-oceancapp-primary"
 					fullscreen={false}
 					cellRender={cellRender}
+					value={currentDate}
+					onPanelChange={onPanelChange}
 				/>
 			</div>
 		</section>

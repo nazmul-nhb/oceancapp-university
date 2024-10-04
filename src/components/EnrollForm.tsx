@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Form, Input, Button, Select } from "antd";
-import { CourseReg, RegistrationInfo } from "../types/interfaces";
+import type { CourseReg, RegistrationInfo } from "../types/interfaces";
 import toast from "react-hot-toast";
 import {
 	getRegisteredCourses,

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, Select } from "antd";
 import { facultyList } from "../data/faculty";
-import { Faculty } from "../types/interfaces";
+import type { Faculty } from "../types/interfaces";
 import { Helmet } from "react-helmet-async";
 import { getColorForFirstCharacter } from "color-generator-fl";
 import { UserOutlined } from "@ant-design/icons";

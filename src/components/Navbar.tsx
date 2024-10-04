@@ -4,7 +4,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
 import { logo, menuItems } from "../utilities/constants";
 import { useMediaQuery } from "react-responsive";
-import { MenuItem } from "../types/interfaces";
+import type { MenuItem } from "../types/interfaces";
 
 const { Header, Sider } = Layout;
 

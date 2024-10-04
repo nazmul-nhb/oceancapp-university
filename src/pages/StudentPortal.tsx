@@ -4,7 +4,7 @@ import { formatDate } from "../utilities/utilities";
 import StudentTabs from "../components/StudentTabs";
 import { Helmet } from "react-helmet-async";
 import { getRegisteredCourses } from "../utilities/localStorage";
-import { CourseFinished, CourseReg } from "../types/interfaces";
+import type { CourseFinished, CourseReg } from "../types/interfaces";
 import { coursesData } from "../data/courses";
 
 const StudentPortal: React.FC = () => {

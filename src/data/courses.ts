@@ -1,4 +1,4 @@
-import { CourseReg } from "../types/interfaces";
+import type { CourseReg } from "../types/interfaces";
 
 export const coursesData: CourseReg[] = [
 	// Computer Science Department

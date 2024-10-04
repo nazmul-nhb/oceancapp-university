@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CourseReg } from "../types/interfaces";
+import type { CourseReg } from "../types/interfaces";
 import { coursesData } from "../data/courses";
 import { Helmet } from "react-helmet-async";
 import EnrollForm from "../components/EnrollForm";
