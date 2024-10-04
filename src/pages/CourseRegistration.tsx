@@ -4,21 +4,28 @@ import { coursesData } from "../data/courses";
 import { Helmet } from "react-helmet-async";
 import EnrollForm from "../components/EnrollForm";
 import { getRegisteredCourses } from "../utilities/localStorage";
+import { studentData } from "../data/students";
 
 const CourseRegistration: React.FC = () => {
+	const {finishedCourses } = studentData;
 	const [courses, setCourses] = useState<CourseReg[]>(coursesData);
 
 	useEffect(() => {
 		// Fetch registered courses each time the the component mounts
 		const registeredCourses = getRegisteredCourses();
 
-		// Filter out registered courses from the available list
-		const updatedCourses = coursesData.filter(
-			(course) => !registeredCourses.includes(course.courseId)
-		);
+		// Filter out registered courses and finished courses from the available list
+		const availableCourses = coursesData.filter((course) => {
+			const isRegistered = registeredCourses.includes(course.courseId);
+			const isFinished = finishedCourses.some(
+				(finishedCourse) => finishedCourse.courseId === course.courseId
+			);
 
-		setCourses(updatedCourses);
-	}, []);
+			return !isRegistered && !isFinished;
+		});
+
+		setCourses(availableCourses);
+	}, [finishedCourses]);
 
 	// Sort the courses alphabetically
 	const sortedCourses = courses.sort((a, b) => {
