@@ -72,6 +72,7 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 			</div>
 		);
 	};
+	
 	return (
 		<section className="flex justify-between items-start flex-col lg:flex-row gap-5">
 			<ul className="list-item space-y-3 ml-6">

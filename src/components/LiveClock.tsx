@@ -24,7 +24,7 @@ const LiveClock: React.FC = () => {
 				description={currentTime}
 				style={{ insetInlineEnd: 24 }}
 				icon={<ClockCircleOutlined />}
-				className="px-1 w-24 h-12 rounded-lg"
+				className="px-1 w-20 h-12 rounded-lg"
 			/>
 		</Tooltip>
 	);
