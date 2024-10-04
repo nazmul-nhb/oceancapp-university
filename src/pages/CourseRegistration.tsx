@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Select, message } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import { CourseReg, RegistrationInfo } from "../types/interfaces";
 import { coursesData } from "../data/courses";
 import { Helmet } from "react-helmet-async";
 import { DownOutlined } from "@ant-design/icons";
+import toast from "react-hot-toast";
 
 const MAX_COURSE_COUNT = 4;
 
@@ -30,7 +31,7 @@ const CourseRegistration: React.FC = () => {
 		setCourses(updatedCourses);
 
 		// Show success message on form submission
-		message.success(
+		toast.success(
 			`Successfully Enrolled in ${courseIds.length} ${
 				courseIds.length === 1 ? "Course" : "Courses"
 			}!`
@@ -146,7 +147,9 @@ const CourseRegistration: React.FC = () => {
 				</Form.Item>
 			</Form>
 
-			<h3 className="text-xl mt-10 mb-3">Available Courses to Enroll</h3>
+			<h3 className="text-xl mt-10 mb-3">
+				Available Courses to Enroll: {sortedCourses.length}
+			</h3>
 			<div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 				{sortedCourses.map((course) => (
 					<div
