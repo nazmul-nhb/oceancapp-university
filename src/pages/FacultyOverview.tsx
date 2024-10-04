@@ -1,18 +1,22 @@
 import React, { useState } from "react";
+import { Form, Input, Select } from "antd";
 import { facultyList } from "../data/faculty";
 import { Faculty } from "../types/interfaces";
-import { getColorForFirstCharacter } from "color-generator-fl";
 import { Helmet } from "react-helmet-async";
+import { getColorForFirstCharacter } from "color-generator-fl";
 
 const FacultyOverview: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState<string>("");
-	const [selectedDesignation, setSelectedDesignation] = useState<string>("");
-	const [selectedSubject, setSelectedSubject] = useState<string>("");
+	const [selectedDesignation, setSelectedDesignation] = useState<
+		string | null
+	>(null);
+	const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
 
 	// Generate unique designations and subjects
 	const uniqueDesignations = Array.from(
 		new Set(facultyList.map((faculty) => faculty.designation))
 	);
+
 	const uniqueSubjects = Array.from(
 		new Set(facultyList.flatMap((faculty) => faculty.subjects))
 	).sort();
@@ -37,45 +41,68 @@ const FacultyOverview: React.FC = () => {
 			<Helmet>
 				<title>Faculty Overview - OceanCapp University</title>
 			</Helmet>
-			{/* Filters */}
-			<div className="mb-6 flex gap-6">
-				{/* Search with name */}
-				<input
-					type="text"
-					placeholder="Search faculty by name"
-					value={searchTerm}
-					onChange={(e) => setSearchTerm(e.target.value)}
-					className="flex-wrap w-full max-w-md p-3 border border-gray-300 rounded-md focus:outline-none"
-				/>
-				{/* Filter with Designation */}
-				<select
-					value={selectedDesignation}
-					onChange={(e) => setSelectedDesignation(e.target.value)}
-					className="flex-wrap w-full max-w-md p-3 border border-gray-300 rounded-md focus:outline-none"
-				>
-					<option value="">Select Designation</option>
-					{uniqueDesignations.map((designation, index) => (
-						<option key={index} value={designation}>
-							{designation}
-						</option>
-					))}
-				</select>
-				{/* Filter with subject */}
-				<select
-					value={selectedSubject}
-					onChange={(e) => setSelectedSubject(e.target.value)}
-					className="flex-wrap w-full max-w-md p-3 border border-gray-300 rounded-md focus:outline-none oceancapp-scrollbar"
-				>
-					<option value="">Select Subject</option>
-					{uniqueSubjects.map((subject, index) => (
-						<option key={index} value={subject}>
-							{subject}
-						</option>
-					))}
-				</select>
-			</div>
 
-			{/* Faculty list */}
+			{/* Filters */}
+			<Form className="mb-6 flex flex-col md:flex-row md:gap-6 justify-center items-center">
+				{/* Search by name */}
+				<Form.Item className="w-full">
+					<Input
+						placeholder="Search faculty by name"
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
+						className="w-full max-w-md"
+						allowClear
+					/>
+				</Form.Item>
+
+				{/* Filter by designation */}
+				<Form.Item className="w-full">
+					<Select
+						placeholder="Select Designation"
+						value={selectedDesignation} // Initial value is null
+						onChange={(value) => setSelectedDesignation(value)}
+						className="w-full max-w-md"
+						allowClear
+						showSearch
+						filterOption={(input, option) => {
+							// Ensure a boolean return type
+							if (!option) return false; // If option is undefined, return false
+							return option.label
+								.toLowerCase()
+								.includes(input.toLowerCase());
+						}}
+						options={uniqueDesignations.map((designation) => ({
+							label: designation,
+							value: designation,
+						}))}
+					/>
+				</Form.Item>
+
+				{/* Filter by subject */}
+				<Form.Item className="w-full">
+					<Select
+						placeholder="Select Subject"
+						value={selectedSubject} // Initial value is null
+						onChange={(value) => setSelectedSubject(value)}
+						className="w-full max-w-md"
+						allowClear
+						showSearch
+						filterOption={(input, option) => {
+							// Ensure a boolean return type
+							if (!option) return false; // If option is undefined, return false
+							return option.label
+								.toLowerCase()
+								.includes(input.toLowerCase());
+						}}
+						options={uniqueSubjects.map((subject) => ({
+							label: subject,
+							value: subject,
+						}))}
+					/>
+				</Form.Item>
+			</Form>
+
+			{/* Faculty List */}
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 				{filteredFaculty.map((faculty) => {
 					const {
@@ -88,6 +115,7 @@ const FacultyOverview: React.FC = () => {
 					} = faculty;
 					const firstName = name.split(" ")[1];
 					const color = getColorForFirstCharacter(firstName, 97);
+
 					return (
 						<div
 							key={facultyId}
