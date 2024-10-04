@@ -55,3 +55,9 @@ export interface Faculty {
 	officeHours: string;
 	contactEmail: string;
 }
+
+export interface RegistrationInfo {
+	studentName: string;
+	email: string;
+	courseIds: string[];
+}

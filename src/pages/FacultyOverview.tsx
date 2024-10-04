@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { facultyList } from "../data/faculty";
 import { Faculty } from "../types/interfaces";
 import { getColorForFirstCharacter } from "color-generator-fl";
+import { Helmet } from "react-helmet-async";
 
 const FacultyOverview: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState<string>("");
@@ -33,6 +34,9 @@ const FacultyOverview: React.FC = () => {
 
 	return (
 		<section className="min-h-[calc(100vh-64px)] px-8 py-5">
+			<Helmet>
+				<title>Faculty Overview - OceanCapp University</title>
+			</Helmet>
 			{/* Filters */}
 			<div className="mb-6 flex gap-6">
 				{/* Search with name */}
