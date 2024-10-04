@@ -1,11 +1,13 @@
 import React from "react";
-import { Tabs, ConfigProvider } from "antd";
+import Events from "./Events";
+import { Tabs, ConfigProvider, Card } from "antd";
+import type { CourseFinished, CourseReg, Event } from "../types/interfaces";
+
 import {
 	BookOutlined,
 	CheckCircleOutlined,
 	CalendarOutlined,
 } from "@ant-design/icons";
-import { CourseFinished, CourseReg, Event } from "../types/interfaces";
 
 interface TabProps {
 	courses: CourseFinished[] | CourseReg[];
@@ -18,7 +20,7 @@ const StudentTabs: React.FC<TabProps> = ({
 	finishedCourses,
 	upcomingEvents,
 }) => {
-	// Define the tab items
+	// Create tabItems array for showing tabs
 	const tabItems = [
 		{
 			key: "1",
@@ -28,14 +30,14 @@ const StudentTabs: React.FC<TabProps> = ({
 				</span>
 			),
 			children: (
-				<ul>
+				<div className="course-list">
 					{courses.map((course) => (
-						<li key={course.courseId}>
+						<Card key={course.courseId} style={{ margin: "8px 0" }}>
 							<strong>{course.courseName}</strong> -{" "}
 							{course.professorName} ({course.credits} credits)
-						</li>
+						</Card>
 					))}
-				</ul>
+				</div>
 			),
 		},
 		{
@@ -46,14 +48,14 @@ const StudentTabs: React.FC<TabProps> = ({
 				</span>
 			),
 			children: (
-				<ul>
+				<div className="finished-course-list">
 					{finishedCourses.map((course) => (
-						<li key={course.courseId}>
+						<Card key={course.courseId} style={{ margin: "8px 0" }}>
 							<strong>{course.courseName}</strong> -{" "}
 							{course.professorName} (Grade: {course.grade})
-						</li>
+						</Card>
 					))}
-				</ul>
+				</div>
 			),
 		},
 		{
@@ -63,16 +65,7 @@ const StudentTabs: React.FC<TabProps> = ({
 					<CalendarOutlined /> Upcoming Events
 				</span>
 			),
-			children: (
-				<ul>
-					{upcomingEvents.map((event) => (
-						<li key={event.eventId}>
-							<strong>{event.title}</strong> -{" "}
-							{event.date.toDateString()} ({event.description})
-						</li>
-					))}
-				</ul>
-			),
+			children: <Events events={upcomingEvents} />,
 		},
 	];
 

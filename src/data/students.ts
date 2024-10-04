@@ -213,7 +213,7 @@ export const studentData: StudentData = {
 		},
 		{
 			eventId: "event2",
-			title: "Project Submission",
+			title: "Project Submit",
 			date: new Date("2024-11-10"),
 			description: "Submit the final project for CS101.",
 		},
