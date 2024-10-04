@@ -3,6 +3,7 @@ import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import LiveClock from "../components/LiveClock";
 
 const { Content } = Layout;
 
@@ -17,6 +18,7 @@ const Root: React.FC = () => {
 					</div>
 					<Footer />
 				</Content>
+				<LiveClock/>
 			</Layout>
 		</Layout>
 	);

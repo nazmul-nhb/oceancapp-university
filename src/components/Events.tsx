@@ -30,14 +30,15 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 		setCurrentDate(date);
 	};
 
+	// Add events to the calendar
 	const addEventToCalendar = (event: Event) => {
 		if (!eventsInCalendar.find((e) => e.eventId === event.eventId)) {
 			setEventsInCalendar((prev) => [...prev, event]);
-			toast.success(`${event.title} is Added to Calendar.`, {
+			toast.success(`${event.title} is Added to Calendar!`, {
 				id: "event1",
 			});
 		} else {
-			toast.error(`${event.title} is Already in the Calendar.`, {
+			toast.error(`${event.title} is Already in the Calendar!`, {
 				id: "event2",
 			});
 		}
