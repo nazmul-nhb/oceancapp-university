@@ -7,6 +7,7 @@ import {
 	getRegisteredCourses,
 	saveRegisteredCourses,
 } from "../utilities/localStorage";
+import { studentData } from "../data/students";
 
 interface EnrollCourseProps {
 	sortedCourses: CourseReg[];
@@ -18,6 +19,7 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 	setCourses,
 }) => {
 	const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+	const { studentName, studentEmail, studentId } = studentData;
 	const [form] = Form.useForm();
 
 	const courseOptions = sortedCourses.map((course) => {
@@ -93,6 +95,7 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 				form={form}
 				name="courseRegistration"
 				layout="vertical"
+				initialValues={{ studentName, studentEmail, studentId }}
 				onFinish={handleCourseEnrollment}
 				scrollToFirstError
 			>
@@ -106,6 +109,7 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 					]}
 				>
 					<Input
+						// defaultValue={name}
 						allowClear
 						id="studentName"
 						placeholder="Enter your full name"
@@ -113,7 +117,7 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 				</Form.Item>
 
 				<Form.Item
-					name="email"
+					name="studentEmail"
 					rules={[
 						{
 							required: true,
@@ -125,7 +129,12 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 						},
 					]}
 				>
-					<Input allowClear placeholder="Enter your email" />
+					<Input
+						// defaultValue={studentEmail}
+						allowClear
+						id="studentEmail"
+						placeholder="Enter your email"
+					/>
 				</Form.Item>
 
 				<Form.Item
@@ -137,7 +146,12 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 						},
 					]}
 				>
-					<Input allowClear placeholder="Enter your student id" />
+					<Input
+						// defaultValue={studentId}
+						allowClear
+						id="studentId"
+						placeholder="Enter your student id"
+					/>
 				</Form.Item>
 
 				<Form.Item

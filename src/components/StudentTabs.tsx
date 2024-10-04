@@ -5,11 +5,11 @@ import {
 	CheckCircleOutlined,
 	CalendarOutlined,
 } from "@ant-design/icons";
-import { CourseTaken, Event } from "../types/interfaces";
+import { CourseFinished, CourseReg, Event } from "../types/interfaces";
 
 interface TabProps {
-	courses: CourseTaken[];
-	finishedCourses: CourseTaken[];
+	courses: CourseFinished[] | CourseReg[];
+	finishedCourses: CourseFinished[];
 	upcomingEvents: Event[];
 }
 

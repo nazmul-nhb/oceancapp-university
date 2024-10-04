@@ -1,8 +1,9 @@
 import { StudentData } from "../types/interfaces";
 
 export const studentData: StudentData = {
-	name: "John Doe",
+	studentName: "John Doe",
 	studentId: "20230123",
+	studentEmail: "johndoe@oceancapp.uni.edu",
 	studentImage:
 		"https://live.staticflickr.com/65535/54039904455_f0c1a2214c_c.jpg",
 	admissionDate: new Date("2022-09-01"),

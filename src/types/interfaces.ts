@@ -5,7 +5,7 @@ export interface MenuItem {
 	children?: MenuItem[];
 }
 
-export interface CourseTaken {
+export interface CourseFinished {
 	courseId: string;
 	courseName: string;
 	professorName: string;
@@ -36,14 +36,15 @@ export interface Event {
 }
 
 export interface StudentData {
-	name: string;
+	studentName: string;
 	studentId: string;
+	studentEmail: string;
 	studentImage: string;
 	admissionDate: Date;
 	currentSemester: string;
 	expectedGraduationDate: Date;
-	courses: CourseTaken[];
-	finishedCourses: CourseTaken[];
+	courses: CourseReg[] | CourseFinished[];
+	finishedCourses: CourseFinished[];
 	upcomingEvents: Event[];
 }
 

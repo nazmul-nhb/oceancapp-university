@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { studentData } from "../data/students";
 import { formatDate } from "../utilities/utilities";
 import StudentTabs from "../components/StudentTabs";
 import { Helmet } from "react-helmet-async";
+import { getRegisteredCourses } from "../utilities/localStorage";
+import { CourseFinished, CourseReg } from "../types/interfaces";
+import { coursesData } from "../data/courses";
 
 const StudentPortal: React.FC = () => {
 	const {
-		name,
+		studentName: name,
 		studentId,
 		studentImage,
 		admissionDate,
@@ -16,6 +19,22 @@ const StudentPortal: React.FC = () => {
 		finishedCourses,
 		upcomingEvents,
 	} = studentData;
+
+	const [enrolledCourses, setEnrolledCourses] = useState<
+		CourseFinished[] | CourseReg[]
+	>(courses);
+
+	useEffect(() => {
+		const registeredIds = getRegisteredCourses();
+		if (registeredIds.length) {
+			// Filter for courses that are of type CourseReg
+			const registeredCourses = coursesData.filter((course) =>
+				registeredIds.includes(course.courseId)
+			);
+
+			setEnrolledCourses(registeredCourses);
+		}
+	}, [courses]);
 
 	return (
 		<section className="min-h-[calc(100vh-64px)] p-8">
@@ -43,7 +62,7 @@ const StudentPortal: React.FC = () => {
 				</div>
 
 				<StudentTabs
-					courses={courses}
+					courses={enrolledCourses}
 					finishedCourses={finishedCourses}
 					upcomingEvents={upcomingEvents}
 				/>
