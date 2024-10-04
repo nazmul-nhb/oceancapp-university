@@ -28,10 +28,10 @@ const FacultyOverview: React.FC = () => {
 			.toLowerCase()
 			.includes(searchTerm.toLowerCase());
 		const matchesDesignation = selectedDesignation
-			? faculty.designation === selectedDesignation
+			? faculty.designation === selectedDesignation.trim()
 			: true;
 		const matchesSubject = selectedSubject
-			? faculty.subjects.includes(selectedSubject)
+			? faculty.subjects.includes(selectedSubject.trim())
 			: true;
 
 		return matchesName && matchesDesignation && matchesSubject;
@@ -66,6 +66,10 @@ const FacultyOverview: React.FC = () => {
 						className="w-full max-w-md"
 						allowClear
 						showSearch
+						options={uniqueDesignations.map((designation) => ({
+							label: designation,
+							value: designation,
+						}))}
 						filterOption={(input, option) => {
 							// Ensure a boolean return type
 							if (!option) return false; // If option is undefined, return false
@@ -73,10 +77,6 @@ const FacultyOverview: React.FC = () => {
 								.toLowerCase()
 								.includes(input.toLowerCase());
 						}}
-						options={uniqueDesignations.map((designation) => ({
-							label: designation,
-							value: designation,
-						}))}
 					/>
 				</Form.Item>
 
