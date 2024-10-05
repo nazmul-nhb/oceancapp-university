@@ -3,7 +3,7 @@ import moment from "moment";
 // Format date to display on the UI
 export const formatDate = (date: Date): string => {
 	return moment(date).isValid()
-		? moment(date).format("MMMM DD, YYYY")
+		? moment(date).format("MMM DD, YYYY")
 		: "Invalid Date";
 };
 

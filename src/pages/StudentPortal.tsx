@@ -14,6 +14,7 @@ import {
 	UserOutlined,
 } from "@ant-design/icons";
 import Performance from "../components/Performance";
+import DateWithCalendar from "../components/DateWithCalendar";
 
 const StudentPortal: React.FC = () => {
 	const {
@@ -51,13 +52,13 @@ const StudentPortal: React.FC = () => {
 				<title>Student Portal - OceanCapp University</title>
 			</Helmet>
 			<div className="container mx-auto">
-				{/* Student Info Card */}
-				<div className="bg-bannerBG bg-cover bg-no-repeat shadow-lg rounded-lg p-5 flex flex-col md:flex-row items-center gap-6 mb-8">
+				{/* Student Info Banner */}
+				<div className="bg-bannerBG bg-cover bg-no-repeat shadow-lg rounded-lg py-12 lg:px-12 px-4 flex flex-col lg:flex-row items-center gap-6 mb-8 relative">
 					<Image
 						width={180}
 						src={studentImage}
-						alt={`${name}'s profile`}
-						className="w-24 h-24 rounded-full border-2 p-1 border-gray-300"
+						alt={`${name}'s Profile`}
+						className="aspect-square rounded-full border-2 p-1 border-gray-300"
 					/>
 					<Card
 						className="bg-oceancapp-primary text-white"
@@ -75,7 +76,7 @@ const StudentPortal: React.FC = () => {
 						</p>
 						<p>
 							<CalendarOutlined style={{ marginRight: 6 }} />
-							Admission Date: {formatDate(admissionDate)}
+							Admission: {formatDate(admissionDate)}
 						</p>
 						<p>
 							<FieldTimeOutlined style={{ marginRight: 6 }} />
@@ -83,11 +84,12 @@ const StudentPortal: React.FC = () => {
 						</p>
 						<p>
 							<CalendarOutlined style={{ marginRight: 6 }} />
-							Expected Graduation:{" "}
+							Graduation:{" "}
 							{formatDate(expectedGraduationDate)}
 						</p>
 					</Card>
-					<Performance courses={ finishedCourses} />
+					<Performance courses={finishedCourses} />
+					<DateWithCalendar events={upcomingEvents} />
 				</div>
 
 				<StudentTabs
