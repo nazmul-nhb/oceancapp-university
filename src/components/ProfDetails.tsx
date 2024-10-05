@@ -50,13 +50,6 @@ const ProfDetails: React.FC<ProfDetailsProps> = ({ email }) => {
 						{profDetails.facultyName}
 					</span>
 				}
-				cover={
-					<img
-						className="p-2 m-0"
-						alt={profDetails.facultyName}
-						src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-					/>
-				}
 				actions={[
 					<Button
 						key={"whatsapp"}

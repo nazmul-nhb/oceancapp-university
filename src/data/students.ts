@@ -1,11 +1,11 @@
 import type { StudentData } from "../types/interfaces";
 
 export const studentData: StudentData = {
-	studentName: "John Doe",
-	studentId: "20230123",
-	studentEmail: "johndoe@oceancapp.uni.edu",
+	studentName: "Nazmul Hassan",
+	studentId: "20230118",
+	studentEmail: "nazmulnhb@oceancapp.uni.edu",
 	studentImage:
-		"https://live.staticflickr.com/65535/54039904455_f0c1a2214c_c.jpg",
+		"https://live.staticflickr.com/65535/53828051891_eb9abba4f9_o.jpg",
 	admissionDate: new Date("2022-09-01"),
 	currentSemester: "Fall 2024",
 	expectedGraduationDate: new Date("2026-08-31"),
