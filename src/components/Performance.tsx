@@ -1,8 +1,9 @@
 import React from "react";
-import { Doughnut } from "react-chartjs-2"; // Import the Doughnut chart component
+import { Doughnut } from "react-chartjs-2";
 import type { CourseFinished } from "../types/interfaces";
-import { Chart, ArcElement, Tooltip, Legend, TooltipItem } from "chart.js"; // Import necessary Chart.js components
+import { Chart, ArcElement, Tooltip, Legend, TooltipItem } from "chart.js";
 import { getColorForFirstCharacter } from "color-generator-fl";
+import type { ChartOptions, ChartData, Chart as ChartJS } from "chart.js";
 
 // Register necessary components with Chart.js
 Chart.register(ArcElement, Tooltip, Legend);
@@ -17,6 +18,9 @@ interface CoursesProps {
 }
 
 const Performance: React.FC<CoursesProps> = ({ courses }) => {
+	// Count total courses finished
+	const totalCourses = courses.length;
+
 	// Group courses by grade & Count the occurrences of each grade
 	const courseCountByGrade = courses.reduce((acc, course) => {
 		if (course.grade) {
@@ -26,7 +30,7 @@ const Performance: React.FC<CoursesProps> = ({ courses }) => {
 	}, {} as Record<string, number>);
 
 	// Prepare data for the Doughnut chart
-	const chartData = {
+	const chartData: ChartData<"doughnut"> = {
 		labels: Object.keys(courseCountByGrade),
 		datasets: [
 			{
@@ -37,22 +41,44 @@ const Performance: React.FC<CoursesProps> = ({ courses }) => {
 		],
 	};
 
-	// Options for the chart
-	const options = {
+	// Custom plugin to display text in the center of the doughnut chart
+	const centerTextPlugin = {
+		id: "centerText",
+		beforeDraw(chart: ChartJS<"doughnut">) {
+			const { width, height, ctx } = chart;
+			if (!ctx) return;
+
+			ctx.restore();
+			const fontSize = 17;
+			ctx.font = `${fontSize}px bold`;
+			ctx.textBaseline = "middle";
+
+			// Calculate the center position of the chart
+			const text = `${totalCourses} Courses`;
+			const textX = Math.round((width - ctx.measureText(text).width) / 2);
+			const textY = height / 2;
+
+			ctx.fillStyle = "#fff"; // Set text color
+			ctx.fillText(text, textX, textY);
+			ctx.save();
+		},
+	};
+
+	// Options for the chart including the center text plugin
+	const options: ChartOptions<"doughnut"> = {
 		plugins: {
 			tooltip: {
 				callbacks: {
 					label: (context: TooltipItem<"doughnut">) => {
-						// Specify the tooltip context type
 						const label = context.label || "";
 						const value = context.raw;
-
-						// Ensure that value is a number
 						const count = typeof value === "number" ? value : 0;
-
 						return `${label} in ${count} Courses`;
 					},
 				},
+			},
+			legend: {
+				display: true,
 			},
 		},
 	};
@@ -63,7 +89,11 @@ const Performance: React.FC<CoursesProps> = ({ courses }) => {
 				Your Performance
 			</h3>
 			<div style={{ width: "220px", height: "220px" }}>
-				<Doughnut data={chartData} options={options} />{" "}
+				<Doughnut
+					data={chartData}
+					options={options}
+					plugins={[centerTextPlugin]}
+				/>
 			</div>
 		</div>
 	);

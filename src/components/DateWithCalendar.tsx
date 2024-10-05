@@ -66,8 +66,8 @@ const DateWithCalendar: React.FC<EventProps> = ({ events }) => {
 					/>
 				}
 			>
-				<div className="text-white text-xs animate-ping text-center">
-					Check the Upcoming Events
+				<div className="text-white text-xs text-center animate-ping-slow font-semibold">
+					Click to See Upcoming Events
 				</div>
 				<div className="cursor-pointer text-lg text-white font-semibold animate-pulse">
 					{formattedDate}
