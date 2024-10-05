@@ -50,7 +50,7 @@ export interface StudentData {
 
 export interface Faculty {
 	facultyId: string;
-	name: string;
+	facultyName: string;
 	designation: string;
 	subjects: string[];
 	officeHours: string;

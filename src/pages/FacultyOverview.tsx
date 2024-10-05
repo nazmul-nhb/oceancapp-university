@@ -4,7 +4,7 @@ import { facultyList } from "../data/faculty";
 import type { Faculty } from "../types/interfaces";
 import { Helmet } from "react-helmet-async";
 import { getColorForFirstCharacter } from "color-generator-fl";
-import { UserOutlined } from "@ant-design/icons";
+import { BookOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
 
 const FacultyOverview: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState<string>("");
@@ -24,7 +24,7 @@ const FacultyOverview: React.FC = () => {
 
 	// Filter faculty members based on the search term and selected options
 	const filteredFaculty = facultyList.filter((faculty: Faculty) => {
-		const matchesName = faculty.name
+		const matchesName = faculty.facultyName
 			.toLowerCase()
 			.includes(searchTerm.toLowerCase());
 		const matchesDesignation = selectedDesignation
@@ -46,9 +46,10 @@ const FacultyOverview: React.FC = () => {
 			{/* Filters */}
 			<Form className="mb-6 flex flex-col md:flex-row md:gap-6 justify-center items-center">
 				{/* Search by name */}
-				<Form.Item className="w-full">
+				<Form.Item name="facultyName" className="w-full">
 					<Input
-						prefix={<UserOutlined />}
+						id="facultyName"
+						suffix={<SearchOutlined />}
 						placeholder="Search Faculty by Name"
 						value={searchTerm}
 						onChange={(e) => setSearchTerm(e.target.value)}
@@ -58,8 +59,10 @@ const FacultyOverview: React.FC = () => {
 				</Form.Item>
 
 				{/* Filter by designation */}
-				<Form.Item className="w-full">
+				<Form.Item name="designation" className="w-full">
 					<Select
+						id="designation"
+						suffixIcon={<UserOutlined />}
 						placeholder="Filter Faculty by Designation"
 						value={selectedDesignation} // Initial value is null
 						onChange={(value) => setSelectedDesignation(value)}
@@ -81,8 +84,10 @@ const FacultyOverview: React.FC = () => {
 				</Form.Item>
 
 				{/* Filter by subject */}
-				<Form.Item className="w-full">
+				<Form.Item name="subject" className="w-full">
 					<Select
+						id="subject"
+						suffixIcon={<BookOutlined />}
 						placeholder="Filter Faculty by Subject"
 						value={selectedSubject} // Initial value is null
 						onChange={(value) => setSelectedSubject(value)}
@@ -109,7 +114,7 @@ const FacultyOverview: React.FC = () => {
 				{filteredFaculty.map((faculty) => {
 					const {
 						facultyId,
-						name,
+						facultyName: name,
 						designation,
 						subjects,
 						officeHours,

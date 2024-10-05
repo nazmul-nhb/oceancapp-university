@@ -3,7 +3,7 @@ import type { Faculty } from "../types/interfaces";
 export const facultyList: Faculty[] = [
 	{
 		facultyId: "f0001",
-		name: "Dr. Alan Turing",
+		facultyName: "Dr. Alan Turing",
 		designation: "Professor",
 		subjects: [
 			"Introduction to Computer Science",
@@ -22,7 +22,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0002",
-		name: "Dr. Grace Hopper",
+		facultyName: "Dr. Grace Hopper",
 		designation: "Professor",
 		subjects: [
 			"Object-Oriented Programming",
@@ -37,7 +37,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0003",
-		name: "Dr. Ada Lovelace",
+		facultyName: "Dr. Ada Lovelace",
 		designation: "Professor",
 		subjects: [
 			"Algorithms",
@@ -72,7 +72,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0004",
-		name: "Dr. Richard Feynman",
+		facultyName: "Dr. Richard Feynman",
 		designation: "Professor",
 		subjects: [
 			"Classical Mechanics",
@@ -96,7 +96,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0005",
-		name: "Dr. Marie Curie",
+		facultyName: "Dr. Marie Curie",
 		designation: "Professor",
 		subjects: [
 			"Organic Chemistry",
@@ -117,7 +117,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0006",
-		name: "Dr. Edward Said",
+		facultyName: "Dr. Edward Said",
 		designation: "Professor",
 		subjects: ["World History I"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -125,7 +125,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0007",
-		name: "Dr. Hakuna Matata",
+		facultyName: "Dr. Hakuna Matata",
 		designation: "Professor",
 		subjects: ["World History II"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -133,7 +133,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0008",
-		name: "Dr. Noam Chomsky",
+		facultyName: "Dr. Noam Chomsky",
 		designation: "Professor",
 		subjects: ["English Fundamentals"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -141,7 +141,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0009",
-		name: "Dr. W.B. Yeats",
+		facultyName: "Dr. W.B. Yeats",
 		designation: "Professor",
 		subjects: ["English Literature I"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -149,7 +149,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0010",
-		name: "Dr. Seamus Heaney",
+		facultyName: "Dr. Seamus Heaney",
 		designation: "Professor",
 		subjects: ["English Literature II"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -157,7 +157,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0011",
-		name: "Dr. Matthew Arnold",
+		facultyName: "Dr. Matthew Arnold",
 		designation: "Professor",
 		subjects: ["English Poetry I"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -165,7 +165,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0012",
-		name: "Dr. Thomas S. Eliot",
+		facultyName: "Dr. Thomas S. Eliot",
 		designation: "Professor",
 		subjects: ["English Poetry II"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -173,7 +173,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0013",
-		name: "Dr. Francis Bacon",
+		facultyName: "Dr. Francis Bacon",
 		designation: "Professor",
 		subjects: ["English Prose"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -181,7 +181,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0014",
-		name: "Dr. Muhammad Shahidullah",
+		facultyName: "Dr. Muhammad Shahidullah",
 		designation: "Professor",
 		subjects: ["Bangla Language I"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -189,7 +189,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0015",
-		name: "Dr. Humayun Azad",
+		facultyName: "Dr. Humayun Azad",
 		designation: "Professor",
 		subjects: ["Bangla Language II"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -197,7 +197,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0016",
-		name: "Rabindranath Tagore",
+		facultyName: "Rabindranath Tagore",
 		designation: "Professor",
 		subjects: ["Bangla Literature I"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -205,7 +205,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0017",
-		name: "Dr. Soumitra Shekhar",
+		facultyName: "Dr. Soumitra Shekhar",
 		designation: "Professor",
 		subjects: ["Bangla Literature II"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -213,7 +213,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0018",
-		name: "Dr. Jibanananda Das",
+		facultyName: "Dr. Jibanananda Das",
 		designation: "Professor",
 		subjects: ["Bangla Poetry"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
@@ -221,7 +221,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0019",
-		name: "Dr. Stephen Hawking",
+		facultyName: "Dr. Stephen Hawking",
 		designation: "Professor",
 		subjects: [
 			"Theoretical Physics",
@@ -234,7 +234,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0020",
-		name: "Dr. Richard Stallman",
+		facultyName: "Dr. Richard Stallman",
 		designation: "Visiting Professor",
 		subjects: ["Software Freedom", "GNU/Linux", "Open Source Software"],
 		officeHours: "Thu 2:00 PM - 4:00 PM",
@@ -242,7 +242,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0021",
-		name: "Dr. Benjamin Franklin",
+		facultyName: "Dr. Benjamin Franklin",
 		designation: "Adjunct Professor",
 		subjects: ["American History", "Political Science", "Philosophy"],
 		officeHours: "Tue 1:00 PM - 3:00 PM",
@@ -250,7 +250,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0022",
-		name: "Dr. Rosalind Franklin",
+		facultyName: "Dr. Rosalind Franklin",
 		designation: "Professor",
 		subjects: [
 			"Biophysics",
@@ -263,7 +263,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0023",
-		name: "Dr. Carl Sagan",
+		facultyName: "Dr. Carl Sagan",
 		designation: "Professor",
 		subjects: [
 			"Astronomy",
@@ -276,7 +276,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0024",
-		name: "Dr. Alan Kay",
+		facultyName: "Dr. Alan Kay",
 		designation: "Professor",
 		subjects: [
 			"Object-Oriented Programming",
@@ -288,7 +288,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0025",
-		name: "Dr. John von Neumann",
+		facultyName: "Dr. John von Neumann",
 		designation: "Professor",
 		subjects: [
 			"Game Theory",
@@ -300,7 +300,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0026",
-		name: "Dr. Norbert Wiener",
+		facultyName: "Dr. Norbert Wiener",
 		designation: "Professor",
 		subjects: ["Cybernetics", "Systems Theory", "Control Systems"],
 		officeHours: "Tue, Fri 10:00 AM - 12:00 PM",
@@ -308,7 +308,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0027",
-		name: "Dr. David Hilbert",
+		facultyName: "Dr. David Hilbert",
 		designation: "Professor",
 		subjects: [
 			"Mathematical Logic",
@@ -320,7 +320,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0028",
-		name: "Dr. Katherine Johnson",
+		facultyName: "Dr. Katherine Johnson",
 		designation: "Professor",
 		subjects: [
 			"Applied Mathematics",
@@ -333,7 +333,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0029",
-		name: "Dr. Nikola Tesla",
+		facultyName: "Dr. Nikola Tesla",
 		designation: "Professor",
 		subjects: [
 			"Electrical Engineering",
@@ -346,7 +346,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0030",
-		name: "Dr. Margaret Hamilton",
+		facultyName: "Dr. Margaret Hamilton",
 		designation: "Professor",
 		subjects: [
 			"Software Engineering",
@@ -359,7 +359,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0031",
-		name: "Dr. Rosalind Picard",
+		facultyName: "Dr. Rosalind Picard",
 		designation: "Professor",
 		subjects: [
 			"Affective Computing",
@@ -372,7 +372,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0032",
-		name: "Dr. Hedy Lamarr",
+		facultyName: "Dr. Hedy Lamarr",
 		designation: "Adjunct Professor",
 		subjects: [
 			"Wireless Communications",
@@ -385,7 +385,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0033",
-		name: "Dr. Claude Shannon",
+		facultyName: "Dr. Claude Shannon",
 		designation: "Professor",
 		subjects: [
 			"Information Theory",
@@ -398,7 +398,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0034",
-		name: "Dr. Jane Goodall",
+		facultyName: "Dr. Jane Goodall",
 		designation: "Visiting Professor",
 		subjects: ["Primatology", "Conservation Biology", "Anthropology"],
 		officeHours: "Mon 1:00 PM - 3:00 PM",
@@ -406,7 +406,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0035",
-		name: "Dr. Elon Musk",
+		facultyName: "Dr. Elon Musk",
 		designation: "Adjunct Professor",
 		subjects: [
 			"Space Exploration",
@@ -418,7 +418,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0036",
-		name: "Dr. Rachel Carson",
+		facultyName: "Dr. Rachel Carson",
 		designation: "Professor",
 		subjects: [
 			"Environmental Science",
@@ -431,7 +431,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0037",
-		name: "Dr. Isaac Newton",
+		facultyName: "Dr. Isaac Newton",
 		designation: "Professor",
 		subjects: [
 			"General Physics",
@@ -445,7 +445,7 @@ export const facultyList: Faculty[] = [
 	},
 	{
 		facultyId: "f0038",
-		name: "Dr. William Shakespeare",
+		facultyName: "Dr. William Shakespeare",
 		designation: "Professor",
 		subjects: ["English Composition", "Technical Writing"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
