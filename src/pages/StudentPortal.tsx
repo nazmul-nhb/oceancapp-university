@@ -84,8 +84,7 @@ const StudentPortal: React.FC = () => {
 						</p>
 						<p>
 							<CalendarOutlined style={{ marginRight: 6 }} />
-							Graduation:{" "}
-							{formatDate(expectedGraduationDate)}
+							Graduation: {formatDate(expectedGraduationDate)}
 						</p>
 					</Card>
 					<Performance courses={finishedCourses} />

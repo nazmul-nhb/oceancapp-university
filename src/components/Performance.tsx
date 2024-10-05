@@ -111,6 +111,9 @@ const Performance: React.FC<CoursesProps> = ({ courses }) => {
 			},
 			legend: {
 				display: true,
+				labels: {
+					color: "white",
+				},
 			},
 		},
 	};
