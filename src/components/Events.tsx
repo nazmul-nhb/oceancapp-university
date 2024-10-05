@@ -94,7 +94,7 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 					</li>
 				))}
 			</ul>
-			<div className="w-80 !rounded-lg">
+			<div className="w-72 !rounded-lg">
 				<div className="calendar-controls flex justify-between mb-4">
 					<Button
 						icon={<CaretLeftOutlined />}

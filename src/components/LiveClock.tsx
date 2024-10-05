@@ -22,9 +22,9 @@ const LiveClock: React.FC = () => {
 				shape="square"
 				type="primary"
 				description={currentTime}
-				style={{ insetInlineEnd: 24 }}
+				style={{ insetInlineEnd: 12, insetBlockEnd: 12 }}
 				icon={<ClockCircleOutlined />}
-				className="px-1 w-20 h-12 rounded-lg"
+				className="px-1 w-20 h-12 !bg-opacity-30 backdrop-filter backdrop-blur-md z-10 rounded-lg"
 			/>
 		</Tooltip>
 	);

@@ -7,7 +7,7 @@ import { TeamOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuItem } from "../types/interfaces";
 
 // Navbar & Sidebar menu items
-const menuItems: MenuItem[] = [
+export const sidebarMenu: MenuItem[] = [
 	{
 		key: "1",
 		icon: <UserOutlined />,
@@ -59,4 +59,52 @@ const menuItems: MenuItem[] = [
 	},
 ];
 
-export { logo, empty, menuItems };
+// Navbar menu items
+export const navbarMenu: MenuItem[] = [
+	{
+		key: "1",
+		label: <NavLink to="/">Student Portal</NavLink>,
+	},
+	{
+		key: "2",
+		label: <NavLink to="/faculty-overview">Faculty Overview</NavLink>,
+	},
+	{
+		key: "3",
+		label: <NavLink to="/course-registration">Enroll in Courses</NavLink>,
+	},
+	{
+		key: "sub1",
+		label: "User",
+		children: [
+			{
+				key: "4",
+				label: <NavLink to="/user/tom">Tom</NavLink>,
+			},
+			{
+				key: "5",
+				label: <NavLink to="/user/bill">Bill</NavLink>,
+			},
+			{
+				key: "6",
+				label: <NavLink to="/user/alex">Alex</NavLink>,
+			},
+		],
+	},
+	{
+		key: "sub2",
+		label: "Team",
+		children: [
+			{
+				key: "7",
+				label: <NavLink to="/team/1">Team 1</NavLink>,
+			},
+			{
+				key: "8",
+				label: <NavLink to="/team/2">Team 2</NavLink>,
+			},
+		],
+	},
+];
+
+export { logo, empty };

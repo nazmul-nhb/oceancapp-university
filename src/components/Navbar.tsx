@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button, Layout, Menu } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
-import { logo, menuItems } from "../utilities/constants";
+import { logo, navbarMenu, sidebarMenu } from "../utilities/constants";
 import { useMediaQuery } from "react-responsive";
 import type { MenuItem } from "../types/interfaces";
 
@@ -16,7 +16,8 @@ const Navbar: React.FC = () => {
 	const navButtonRef = useRef<HTMLButtonElement>(null);
 	const location = useLocation();
 
-	const getSelectedKey = () => {
+	// Get keys for selected route
+	const getSelectedKey = (menuItems: MenuItem[]) => {
 		const currentPath = location.pathname;
 		const selectedKeys = menuItems
 			.map((item: MenuItem) => {
@@ -65,6 +66,7 @@ const Navbar: React.FC = () => {
 			document.removeEventListener("mouseup", handleClickOutside);
 		};
 	}, [sidebarRef]);
+
 	return (
 		<>
 			<Sider
@@ -83,8 +85,8 @@ const Navbar: React.FC = () => {
 					className="!bg-transparent"
 					mode="inline"
 					theme="dark"
-					selectedKeys={getSelectedKey()}
-					items={menuItems}
+					selectedKeys={getSelectedKey(sidebarMenu)}
+					items={sidebarMenu}
 				/>
 			</Sider>
 			<Header className="bg-opacity-30 flex justify-start md:justify-between items-center sticky top-0 w-full px-0 md:px-4 backdrop-filter backdrop-blur-sm bg-oceancapp-primary/85 z-10">
@@ -121,10 +123,11 @@ const Navbar: React.FC = () => {
 				{isLargeOrXL && (
 					<Menu
 						className="font-bold text-lg !bg-transparent"
+						// itemIcon={null}
 						theme="dark"
 						mode="horizontal"
-						selectedKeys={getSelectedKey()}
-						items={menuItems}
+						selectedKeys={getSelectedKey(navbarMenu)}
+						items={navbarMenu}
 					/>
 				)}
 			</Header>
