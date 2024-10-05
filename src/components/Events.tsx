@@ -74,14 +74,10 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 	};
 
 	return (
-		<section className="flex justify-between items-start flex-col lg:flex-row gap-5">
-			<ul className="list-item space-y-3 ml-6">
+		<section className="flex justify-between text-base items-start flex-col lg:flex-row gap-5">
+			<ul className="space-y-3">
 				{events.map((event) => (
-					<li key={event.eventId} className="list-disc space-x-4">
-						<span>
-							<strong>{event.title}</strong> -{" "}
-							{formatDate(event.date)} ({event.description})
-						</span>
+					<li key={event.eventId} className="space-x-2">
 						<Tooltip title="Add to Calendar">
 							<Button
 								size="small"
@@ -91,6 +87,10 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 								onClick={() => addEventToCalendar(event)}
 							/>
 						</Tooltip>
+						<span>
+							<strong>{event.title}</strong> -{" "}
+							{formatDate(event.date)} ({event.description})
+						</span>
 					</li>
 				))}
 			</ul>

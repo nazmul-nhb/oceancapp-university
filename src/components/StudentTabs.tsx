@@ -34,7 +34,14 @@ const StudentTabs: React.FC<TabProps> = ({
 						<BookOutlined /> Current Courses
 					</span>
 				),
-				children: <CurrentCourses courses={currentCourses} />,
+				children: (
+					<>
+						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
+							Courses that you enrolled this semester
+						</h3>{" "}
+						<CurrentCourses courses={currentCourses} />
+					</>
+				),
 			},
 			{
 				key: "finished-courses",
@@ -43,7 +50,14 @@ const StudentTabs: React.FC<TabProps> = ({
 						<CheckCircleOutlined /> Finished Courses
 					</span>
 				),
-				children: <FinishedCourses courses={finishedCourses} />,
+				children: (
+					<>
+						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
+							List of Courses that you have finished
+						</h3>
+						<FinishedCourses courses={finishedCourses} />
+					</>
+				),
 			},
 			{
 				key: "upcoming-events",
