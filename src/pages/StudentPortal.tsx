@@ -13,6 +13,7 @@ import {
 	IdcardOutlined,
 	UserOutlined,
 } from "@ant-design/icons";
+import Performance from "../components/Performance";
 
 const StudentPortal: React.FC = () => {
 	const {
@@ -86,6 +87,7 @@ const StudentPortal: React.FC = () => {
 							{formatDate(expectedGraduationDate)}
 						</p>
 					</Card>
+					<Performance courses={ finishedCourses} />
 				</div>
 
 				<StudentTabs
