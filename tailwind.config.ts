@@ -13,6 +13,9 @@ export default {
 				sourceSans: '"Source Sans 3", sans-serif;',
 				hallelujah: '"Gloria Hallelujah", cursive;',
 			},
+			backgroundImage: {
+				bannerBG: 'url("/src/assets/banner.png")',
+			},
 		},
 	},
 	plugins: [],

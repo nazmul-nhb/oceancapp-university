@@ -6,6 +6,13 @@ import { Helmet } from "react-helmet-async";
 import { getRegisteredCourses } from "../utilities/localStorage";
 import type { CourseReg } from "../types/interfaces";
 import { coursesData } from "../data/courses";
+import { Image, Card } from "antd";
+import {
+	CalendarOutlined,
+	FieldTimeOutlined,
+	IdcardOutlined,
+	UserOutlined,
+} from "@ant-design/icons";
 
 const StudentPortal: React.FC = () => {
 	const {
@@ -28,7 +35,7 @@ const StudentPortal: React.FC = () => {
 		const registeredIds = getRegisteredCourses();
 
 		if (registeredIds.length) {
-			// Filter for courses that are of type CourseReg
+			// Filter for courses that are registered from the enrollment page
 			const registeredCourses = coursesData.filter((course) =>
 				registeredIds.includes(course.courseId)
 			);
@@ -44,22 +51,41 @@ const StudentPortal: React.FC = () => {
 			</Helmet>
 			<div className="container mx-auto">
 				{/* Student Info Card */}
-				<div className="bg-oceancapp-secondary/30 shadow-lg rounded-lg p-5 flex items-center mb-8">
-					<img
+				<div className="bg-bannerBG bg-cover bg-no-repeat shadow-lg rounded-lg p-5 flex flex-col md:flex-row items-center gap-6 mb-8">
+					<Image
+						width={180}
 						src={studentImage}
 						alt={`${name}'s profile`}
-						className="w-24 h-24 rounded-full border-2 border-gray-300 mr-4"
+						className="w-24 h-24 rounded-full border-2 p-1 border-gray-300"
 					/>
-					<div className="text-gray-200">
-						<h1 className="text-2xl font-semibold">{name}</h1>
-						<p>Student ID: {studentId}</p>
-						<p>Admission Date: {formatDate(admissionDate)}</p>
-						<p>Current Semester: {currentSemester}</p>
+					<Card
+						className="bg-oceancapp-primary text-white"
+						title={
+							<span style={{ color: "white", fontSize: "18px" }}>
+								<UserOutlined style={{ marginRight: 8 }} />
+								{name}
+							</span>
+						}
+						bordered={false}
+					>
 						<p>
+							<IdcardOutlined style={{ marginRight: 6 }} />
+							<span>Student ID: {studentId}</span>
+						</p>
+						<p>
+							<CalendarOutlined style={{ marginRight: 6 }} />
+							Admission Date: {formatDate(admissionDate)}
+						</p>
+						<p>
+							<FieldTimeOutlined style={{ marginRight: 6 }} />
+							Current Semester: {currentSemester}
+						</p>
+						<p>
+							<CalendarOutlined style={{ marginRight: 6 }} />
 							Expected Graduation:{" "}
 							{formatDate(expectedGraduationDate)}
 						</p>
-					</div>
+					</Card>
 				</div>
 
 				<StudentTabs

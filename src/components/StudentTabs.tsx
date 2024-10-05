@@ -37,7 +37,7 @@ const StudentTabs: React.FC<TabProps> = ({
 				children: (
 					<>
 						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
-							Courses that you enrolled this semester
+							Courses You Enrolled this Semester
 						</h3>{" "}
 						<CurrentCourses courses={currentCourses} />
 					</>
@@ -53,7 +53,7 @@ const StudentTabs: React.FC<TabProps> = ({
 				children: (
 					<>
 						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
-							List of Courses that you have finished
+							Courses You Already Finished
 						</h3>
 						<FinishedCourses courses={finishedCourses} />
 					</>
