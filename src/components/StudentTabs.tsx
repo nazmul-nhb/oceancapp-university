@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Events from "./Events";
-import { Tabs, ConfigProvider, Card } from "antd";
+import { Tabs, ConfigProvider } from "antd";
 import type { CourseFinished, CourseReg, Event } from "../types/interfaces";
 
 import {
@@ -8,15 +8,17 @@ import {
 	CheckCircleOutlined,
 	CalendarOutlined,
 } from "@ant-design/icons";
+import CurrentCourses from "./CurrentCourses";
+import FinishedCourses from "./FinishedCourses";
 
 interface TabProps {
-	courses: CourseFinished[] | CourseReg[];
+	currentCourses: CourseReg[];
 	finishedCourses: CourseFinished[];
 	upcomingEvents: Event[];
 }
 
 const StudentTabs: React.FC<TabProps> = ({
-	courses,
+	currentCourses,
 	finishedCourses,
 	upcomingEvents,
 }) => {
@@ -32,20 +34,7 @@ const StudentTabs: React.FC<TabProps> = ({
 						<BookOutlined /> Current Courses
 					</span>
 				),
-				children: (
-					<div className="course-list">
-						{courses.map((course) => (
-							<Card
-								key={course.courseId}
-								style={{ margin: "8px 0" }}
-							>
-								<strong>{course.courseName}</strong> -{" "}
-								{course.professorName} ({course.credits}{" "}
-								credits)
-							</Card>
-						))}
-					</div>
-				),
+				children: <CurrentCourses courses={currentCourses} />,
 			},
 			{
 				key: "finished-courses",
@@ -54,19 +43,7 @@ const StudentTabs: React.FC<TabProps> = ({
 						<CheckCircleOutlined /> Finished Courses
 					</span>
 				),
-				children: (
-					<div className="finished-course-list">
-						{finishedCourses.map((course) => (
-							<Card
-								key={course.courseId}
-								style={{ margin: "8px 0" }}
-							>
-								<strong>{course.courseName}</strong> -{" "}
-								{course.professorName} (Grade: {course.grade})
-							</Card>
-						))}
-					</div>
-				),
+				children: <FinishedCourses courses={finishedCourses} />,
 			},
 			{
 				key: "upcoming-events",
@@ -85,7 +62,7 @@ const StudentTabs: React.FC<TabProps> = ({
 				),
 			},
 		],
-		[courses, finishedCourses, upcomingEvents]
+		[currentCourses, finishedCourses, upcomingEvents]
 	);
 
 	// Handle tab change

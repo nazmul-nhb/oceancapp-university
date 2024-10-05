@@ -22,10 +22,10 @@ export interface CourseReg {
 	professorName: string;
 	professorEmail: string;
 	credits: number;
-	department: string;
-	capacity: number;
-	enrolled: number;
-	duration: string;
+	department?: string;
+	capacity?: number;
+	enrolled?: number;
+	duration?: string;
 }
 
 export interface Event {
@@ -43,7 +43,7 @@ export interface StudentData {
 	admissionDate: Date;
 	currentSemester: string;
 	expectedGraduationDate: Date;
-	courses: CourseReg[] | CourseFinished[];
+	currentCourses: CourseReg[];
 	finishedCourses: CourseFinished[];
 	upcomingEvents: Event[];
 }

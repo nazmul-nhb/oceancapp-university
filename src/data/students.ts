@@ -9,14 +9,13 @@ export const studentData: StudentData = {
 	admissionDate: new Date("2022-09-01"),
 	currentSemester: "Fall 2024",
 	expectedGraduationDate: new Date("2026-08-31"),
-	courses: [
+	currentCourses: [
 		{
 			courseId: "CS101",
 			courseName: "Introduction to Computer Science",
 			professorName: "Dr. Alan Turing",
 			professorEmail: "atur@oceancapp.uni.edu",
 			credits: 3,
-			semester: "Fall 2024",
 			duration: "4 months",
 		},
 		{
@@ -25,7 +24,6 @@ export const studentData: StudentData = {
 			professorName: "Dr. Ada Lovelace",
 			professorEmail: "ada@oceancapp.uni.edu",
 			credits: 4,
-			semester: "Fall 2024",
 			duration: "4 months",
 		},
 		{
@@ -34,7 +32,6 @@ export const studentData: StudentData = {
 			professorName: "Dr. Isaac Newton",
 			professorEmail: "inewton@oceancapp.uni.edu",
 			credits: 3,
-			semester: "Fall 2024",
 			duration: "4 months",
 		},
 	],

@@ -4,7 +4,7 @@ import { formatDate } from "../utilities/utilities";
 import StudentTabs from "../components/StudentTabs";
 import { Helmet } from "react-helmet-async";
 import { getRegisteredCourses } from "../utilities/localStorage";
-import type { CourseFinished, CourseReg } from "../types/interfaces";
+import type { CourseReg } from "../types/interfaces";
 import { coursesData } from "../data/courses";
 
 const StudentPortal: React.FC = () => {
@@ -15,17 +15,18 @@ const StudentPortal: React.FC = () => {
 		admissionDate,
 		currentSemester,
 		expectedGraduationDate,
-		courses,
+		currentCourses,
 		finishedCourses,
 		upcomingEvents,
 	} = studentData;
 
-	const [enrolledCourses, setEnrolledCourses] = useState<
-		CourseFinished[] | CourseReg[]
-	>(courses);
+	const [enrolledCourses, setEnrolledCourses] =
+		useState<CourseReg[]>(currentCourses);
 
+	// Get registered course ids from local storage if registered from the enrollment page
 	useEffect(() => {
 		const registeredIds = getRegisteredCourses();
+
 		if (registeredIds.length) {
 			// Filter for courses that are of type CourseReg
 			const registeredCourses = coursesData.filter((course) =>
@@ -34,7 +35,7 @@ const StudentPortal: React.FC = () => {
 
 			setEnrolledCourses(registeredCourses);
 		}
-	}, [courses]);
+	}, [currentCourses]);
 
 	return (
 		<section className="min-h-[calc(100vh-64px)] p-8">
@@ -62,7 +63,7 @@ const StudentPortal: React.FC = () => {
 				</div>
 
 				<StudentTabs
-					courses={enrolledCourses}
+					currentCourses={enrolledCourses}
 					finishedCourses={finishedCourses}
 					upcomingEvents={upcomingEvents}
 				/>
