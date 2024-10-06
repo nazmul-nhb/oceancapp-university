@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, Avatar } from "antd";
+import React, { useState } from "react";
+import { Card, Avatar, Button } from "antd";
 import {
 	ClockCircleOutlined,
 	TrophyOutlined,
@@ -7,15 +7,18 @@ import {
 } from "@ant-design/icons";
 import type { Faculty } from "../types/interfaces";
 import { getColorForFirstCharacter } from "color-generator-fl";
+import ProfileModal from "./ProfileModal";
 
 const { Meta } = Card;
 
 interface FacultyProps {
+	index: number;
 	faculty: Faculty;
 }
 
-const FacultyCard: React.FC<FacultyProps> = ({ faculty }) => {
+const FacultyCard: React.FC<FacultyProps> = ({ index, faculty }) => {
 	const { facultyName, designation, officeHours } = faculty;
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	// Generate a background color based on the faculty's name
 	const avatarColor = getColorForFirstCharacter(
@@ -28,10 +31,19 @@ const FacultyCard: React.FC<FacultyProps> = ({ faculty }) => {
 		25
 	) as string;
 
+	// Function to handle opening the modal
+	const handleOpenModal = () => {
+		setIsModalOpen(true);
+	};
+
 	return (
 		<Card
 			style={{ backgroundColor: bgColor, maxWidth: 320 }}
-			actions={[<UserOutlined key="profile" />]}
+			actions={[
+				<Button type="primary" key={index} onClick={handleOpenModal}>
+					<UserOutlined /> Details
+				</Button>,
+			]}
 		>
 			<Meta
 				avatar={
@@ -62,6 +74,13 @@ const FacultyCard: React.FC<FacultyProps> = ({ faculty }) => {
 						</p>
 					</div>
 				}
+			/>
+			{/* Profile Modal */}
+			<ProfileModal
+				faculty={faculty}
+				index={index}
+				open={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
 			/>
 		</Card>
 	);

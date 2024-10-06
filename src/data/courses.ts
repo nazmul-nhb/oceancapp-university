@@ -857,7 +857,7 @@ export const coursesData: Course[] = [
 	{
 		courseId: "BAN103",
 		courseName: "Bangla Literature I",
-		professorName: "Rabindranath Tagore",
+		professorName: "Dr. Rabindranath Tagore",
 		professorEmail: "tagore@oceancapp.uni.edu",
 		credits: 3,
 		duration: "4 months",

@@ -46,6 +46,7 @@ export interface Faculty {
 	subjects: string[];
 	officeHours: string;
 	contactEmail: string;
+	gender: "men" | "women";
 }
 
 export interface RegistrationInfo {
