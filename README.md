@@ -117,3 +117,7 @@ The source code for this project is available on GitHub. Feel free to explore an
 - **Advanced Search:** Improve course and faculty search functionality by adding filters for specific course types and additional faculty attributes.
 - **Expanded Notifications:** Add more detailed notifications and messaging features to further enhance student interactions.
 - **Profile Customization:** Allow students to customize their profile and dashboard layout for a more personalized experience.
+
+## Additional Documentation
+
+- [Data Models](./data-models.md) - Details of the TypeScript interfaces used in this project.
