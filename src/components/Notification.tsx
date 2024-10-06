@@ -20,7 +20,7 @@ const Notification: React.FC = () => {
 	);
 
 	// Get maximum 3 notifications to avoid stack overflow
-	const events = upcomingEvents.slice(0, 2);
+	const events = upcomingEvents.slice(0, 3);
 
 	// Store notification index in a ref to prevent appearing multiple notifications
 	const notificationIndexRef = useRef(0);
