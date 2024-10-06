@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import type { CourseReg } from "../types/interfaces";
+import type { Course } from "../types/interfaces";
 import { coursesData } from "../data/courses";
 import { Helmet } from "react-helmet-async";
 import EnrollForm from "../components/EnrollForm";
@@ -7,8 +7,8 @@ import { getRegisteredCourses } from "../utilities/localStorage";
 import { studentData } from "../data/students";
 
 const CourseRegistration: React.FC = () => {
-	const {finishedCourses } = studentData;
-	const [courses, setCourses] = useState<CourseReg[]>(coursesData);
+	const { finishedCourses } = studentData;
+	const [courses, setCourses] = useState<Course[]>(coursesData);
 
 	useEffect(() => {
 		// Fetch registered courses each time the the component mounts

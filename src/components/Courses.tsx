@@ -1,19 +1,26 @@
 import React from "react";
-import type { CourseReg } from "../types/interfaces";
 import { Card, Popover } from "antd";
+import ProfDetails from "./ProfDetails";
+import { getColorForFirstCharacter } from "color-generator-fl";
+import type { Course } from "../types/interfaces";
 import {
 	BookOutlined,
+	StarOutlined,
 	UserAddOutlined,
 	ClockCircleOutlined,
 } from "@ant-design/icons";
-import ProfDetails from "./ProfDetails";
-import { getColorForFirstCharacter } from "color-generator-fl";
 
 interface CoursesProps {
-	courses: CourseReg[];
+	courses: Course[];
+	isCurrent?: boolean;
+	isFinished?: boolean;
 }
 
-const CurrentCourses: React.FC<CoursesProps> = ({ courses }) => {
+const Courses: React.FC<CoursesProps> = ({
+	courses,
+	isCurrent,
+	isFinished,
+}) => {
 	return (
 		<div className="grid grid-cols-4 gap-5">
 			{courses.map((course) => {
@@ -66,10 +73,31 @@ const CurrentCourses: React.FC<CoursesProps> = ({ courses }) => {
 								<BookOutlined style={{ marginRight: 8 }} />
 								{course.credits} Credits
 							</p>
-							<p className="">
-								<ClockCircleOutlined style={{ marginRight: 8 }} />
-								{course.duration}
-							</p>
+							{isCurrent && (
+								<p className="">
+									<ClockCircleOutlined
+										style={{ marginRight: 8 }}
+									/>
+									{course.duration}
+								</p>
+							)}
+
+							{isFinished && (
+								<>
+									<p className="">
+										<ClockCircleOutlined
+											style={{ marginRight: 8 }}
+										/>
+										{course?.semester}
+									</p>
+									<p className="">
+										<StarOutlined
+											style={{ marginRight: 8 }}
+										/>
+										Grade: {course?.grade}
+									</p>
+								</>
+							)}
 						</div>
 					</Card>
 				);
@@ -78,4 +106,4 @@ const CurrentCourses: React.FC<CoursesProps> = ({ courses }) => {
 	);
 };
 
-export default CurrentCourses;
+export default Courses;

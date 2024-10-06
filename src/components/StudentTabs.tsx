@@ -1,19 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Events from "./Events";
 import { Tabs, ConfigProvider } from "antd";
-import type { CourseFinished, CourseReg, Event } from "../types/interfaces";
+import type { Course, Event } from "../types/interfaces";
 
 import {
 	BookOutlined,
 	CheckCircleOutlined,
 	CalendarOutlined,
 } from "@ant-design/icons";
-import CurrentCourses from "./CurrentCourses";
-import FinishedCourses from "./FinishedCourses";
+import Courses from "./Courses";
 
 interface TabProps {
-	currentCourses: CourseReg[];
-	finishedCourses: CourseFinished[];
+	currentCourses: Course[];
+	finishedCourses: Course[];
 	upcomingEvents: Event[];
 }
 
@@ -38,8 +37,8 @@ const StudentTabs: React.FC<TabProps> = ({
 					<>
 						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
 							Courses You Enrolled this Semester
-						</h3>{" "}
-						<CurrentCourses courses={currentCourses} />
+						</h3>
+						<Courses isCurrent={true} courses={currentCourses} />
 					</>
 				),
 			},
@@ -55,7 +54,7 @@ const StudentTabs: React.FC<TabProps> = ({
 						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
 							Courses You Already Finished
 						</h3>
-						<FinishedCourses courses={finishedCourses} />
+						<Courses isFinished={true} courses={finishedCourses} />
 					</>
 				),
 			},

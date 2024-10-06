@@ -1,6 +1,6 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
-import type { CourseFinished } from "../types/interfaces";
+import type { Course } from "../types/interfaces";
 import { Chart, ArcElement, Tooltip, Legend, TooltipItem } from "chart.js";
 import { getColorForFirstCharacter } from "color-generator-fl";
 import type { ChartOptions, ChartData, Chart as ChartJS } from "chart.js";
@@ -14,7 +14,7 @@ const alphabets = Array.from({ length: 26 }, (_, i) =>
 );
 
 interface CoursesProps {
-	courses: CourseFinished[];
+	courses: Course[];
 }
 
 // Grade points mapping based on your grading system

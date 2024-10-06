@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Form, Input, Button, Select } from "antd";
-import type { CourseReg, RegistrationInfo } from "../types/interfaces";
+import type { Course, RegistrationInfo } from "../types/interfaces";
 import toast from "react-hot-toast";
 import {
 	getRegisteredCourses,
@@ -10,8 +10,8 @@ import {
 import { studentData } from "../data/students";
 
 interface EnrollCourseProps {
-	sortedCourses: CourseReg[];
-	setCourses: React.Dispatch<React.SetStateAction<CourseReg[]>>;
+	sortedCourses: Course[];
+	setCourses: React.Dispatch<React.SetStateAction<Course[]>>;
 }
 
 const EnrollForm: React.FC<EnrollCourseProps> = ({

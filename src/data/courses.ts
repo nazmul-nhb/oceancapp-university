@@ -1,6 +1,6 @@
-import type { CourseReg } from "../types/interfaces";
+import type { Course } from "../types/interfaces";
 
-export const coursesData: CourseReg[] = [
+export const coursesData: Course[] = [
 	// Computer Science Department
 	{
 		courseId: "CS101",

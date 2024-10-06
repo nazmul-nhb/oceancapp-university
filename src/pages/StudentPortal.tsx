@@ -4,7 +4,7 @@ import { formatDate } from "../utilities/utilities";
 import StudentTabs from "../components/StudentTabs";
 import { Helmet } from "react-helmet-async";
 import { getRegisteredCourses } from "../utilities/localStorage";
-import type { CourseReg } from "../types/interfaces";
+import type { Course } from "../types/interfaces";
 import { coursesData } from "../data/courses";
 import { Image, Card } from "antd";
 import {
@@ -30,7 +30,7 @@ const StudentPortal: React.FC = () => {
 	} = studentData;
 
 	const [enrolledCourses, setEnrolledCourses] =
-		useState<CourseReg[]>(currentCourses);
+		useState<Course[]>(currentCourses);
 
 	// Get registered course ids from local storage if registered from the enrollment page
 	useEffect(() => {
