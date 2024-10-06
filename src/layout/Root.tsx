@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LiveClock from "../components/LiveClock";
+import Notification from "../components/Notification";
 
 const { Content } = Layout;
 
@@ -15,6 +16,7 @@ const Root: React.FC = () => {
 					<Navbar />
 					<div className="md:ml-20">
 						<Outlet />
+						<Notification/>
 						<LiveClock />
 					</div>
 					<Footer />
