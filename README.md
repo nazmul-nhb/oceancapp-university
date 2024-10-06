@@ -120,4 +120,4 @@ The source code for this project is available on GitHub. Feel free to explore an
 
 ## Additional Documentation
 
-- [Data Models](./data-models.md) - Details of the TypeScript interfaces used in this project.
+- [Data Models](./MODELS.md) - Details of the TypeScript interfaces used in this project.
