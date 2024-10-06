@@ -3,8 +3,8 @@ import { Form, Input, Select } from "antd";
 import { facultyList } from "../data/faculty";
 import type { Faculty } from "../types/interfaces";
 import { Helmet } from "react-helmet-async";
-import { getColorForFirstCharacter } from "color-generator-fl";
 import { BookOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
+import FacultyCard from "../components/FacultyCard";
 
 const FacultyOverview: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState<string>("");
@@ -112,63 +112,15 @@ const FacultyOverview: React.FC = () => {
 			</Form>
 
 			{/* Faculty List */}
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-				{filteredFaculty.map((faculty) => {
-					const {
-						facultyId,
-						facultyName: name,
-						designation,
-						subjects,
-						officeHours,
-						contactEmail,
-					} = faculty;
-					const firstName = name.split(" ")[1];
-					const color = getColorForFirstCharacter(firstName, 97);
-
-					return (
-						<div
-							key={facultyId}
-							className="shadow-lg bg-white rounded-lg p-6 hover:shadow-xl transition-shadow duration-300 ease-in-out relative"
-						>
-							{/* Basic faculty information */}
-							<h3 className="text-xl font-semibold mb-2 text-blue-800">
-								{name}
-							</h3>
-							<p className="text-gray-600 font-medium">
-								{designation}
-							</p>
-							<p className="mt-3 text-gray-700">
-								<strong>Subjects:</strong>{" "}
-								{subjects.slice(0, 3).join(", ")}{" "}
-								{subjects.length > 3 && (
-									<span className="text-blue-600 cursor-pointer">
-										+{subjects.length - 3} more
-									</span>
-								)}
-							</p>
-
-							{/* Hidden details revealed on hover */}
-							<div
-								style={{ backgroundColor: color as string }}
-								className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center p-4 opacity-0 hover:opacity-100 transition-all duration-500 ease-in-out z-[1] text-white font-bold rounded-lg"
-							>
-								<h4 className="text-lg font-semibold mb-2">
-									Office Hours
-								</h4>
-								<p className="mb-2">{officeHours}</p>
-								<p className="">
-									Contact:{" "}
-									<a
-										href={`mailto:${contactEmail}`}
-										className="underline"
-									>
-										{contactEmail}
-									</a>
-								</p>
-							</div>
-						</div>
-					);
-				})}
+			<div className="flex justify-center w-full">
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mx-auto">
+					{filteredFaculty.map((faculty) => (
+						<FacultyCard
+							key={faculty.facultyId}
+							faculty={faculty}
+						/>
+					))}
+				</div>
 			</div>
 		</section>
 	);
