@@ -2,18 +2,19 @@ import React, { useEffect, useMemo, useState } from "react";
 import type { Course } from "../types/interfaces";
 import { coursesData } from "../data/courses";
 import { Helmet } from "react-helmet-async";
-import EnrollForm from "../components/EnrollForm";
 import { getRegisteredCourses } from "../utilities/localStorage";
 import { studentData } from "../data/students";
 import Courses from "../components/Courses";
-import { Form, Input, Select, Spin, Flex } from "antd";
+import { Form, Input, Select, Spin, Flex, Button } from "antd";
 import {
 	BookOutlined,
 	SearchOutlined,
 	AppstoreOutlined,
 } from "@ant-design/icons";
+import EnrollModal from "../components/EnrollModal";
 
 const CourseRegistration: React.FC = () => {
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const { finishedCourses } = studentData;
 	const [courses, setCourses] = useState<Course[]>(coursesData);
 	const [searchTerm, setSearchTerm] = useState<string>("");
@@ -25,6 +26,7 @@ const CourseRegistration: React.FC = () => {
 	);
 	const [loading, setLoading] = useState<boolean>(false); // Add loading state
 
+	// Get registered courses from local storage
 	useEffect(() => {
 		setLoading(true);
 		const registeredCourses = getRegisteredCourses();
@@ -78,88 +80,94 @@ const CourseRegistration: React.FC = () => {
 		[courses]
 	);
 
+	// Function to handle opening the modal
+	const handleOpenModal = () => {
+		setIsModalOpen(true);
+	};
+
 	return (
 		<section className="min-h-[calc(100vh-64px)] px-8 py-5">
 			<Helmet>
 				<title>Enroll in Courses - OceanCapp University</title>
 			</Helmet>
-			<div className="bg-bannerBG bg-cover bg-no-repeat bg-bottom shadow-oceancapp-primary shadow-lg rounded-lg p-8 mb-12 space-y-6">
-				{/* Registration & Search/Filter Banner */}
-				<div className="w-full lg:w-4/5 flex flex-col gap-6 items-center justify-center mx-auto">
-					<h3 className="text-xl sm:text-2xl font-semibold font-kreonSerif text-white text-center">
-						Enroll in Your Desired Courses
-					</h3>
-					<EnrollForm
-						setCourses={setCourses}
-						sortedCourses={sortedCourses}
-					/>
-				</div>
 
-				{/* Filtering Section */}
-				<div className="flex flex-col gap-6 items-center justify-center">
-					<h3 className="text-xl sm:text-2xl font-semibold font-kreonSerif text-white text-center">
-						Search & Filter Course(s)
-					</h3>
-					<Form
+			{/* Search/Filter Banner */}
+			<div className="bg-bannerBG bg-cover bg-no-repeat shadow-oceancapp-primary shadow-lg rounded-lg p-8 mb-12 space-y-10">
+				<div className="flex items-center justify-center">
+					<Button
+						className="text-lg font-bold font-kreonSerif animate-bounce hover:animate-none"
 						size="large"
-						className="mb-6 w-full lg:w-4/5 flex flex-col md:flex-row md:gap-6 justify-center items-center"
+						onClick={handleOpenModal}
+						type="dashed"
 					>
-						{/* Search by name */}
-						<Form.Item name="courseName" className="w-full">
-							<Input
-								id="courseName"
-								suffix={<SearchOutlined />}
-								placeholder="Search Course by Course Title"
-								onChange={(e) => setSearchTerm(e.target.value)}
-								className="w-full max-w-md"
-								allowClear
-							/>
-						</Form.Item>
-
-						{/* Filter by department */}
-						<Form.Item name="department" className="w-full">
-							<Select
-								id="department"
-								suffixIcon={<AppstoreOutlined />}
-								placeholder="Filter Course by Department"
-								value={selectedDepartment}
-								onChange={(value) =>
-									setSelectedDepartment(value)
-								}
-								className="w-full max-w-md"
-								allowClear
-								showSearch
-								options={uniqueDepartments.map(
-									(department) => ({
-										label: department,
-										value: department,
-									})
-								)}
-							/>
-						</Form.Item>
-
-						{/* Filter by professor */}
-						<Form.Item name="professor" className="w-full">
-							<Select
-								id="professor"
-								suffixIcon={<BookOutlined />}
-								placeholder="Filter Course by Professor"
-								value={selectedProfessor}
-								onChange={(value) =>
-									setSelectedProfessor(value)
-								}
-								className="w-full max-w-md"
-								allowClear
-								showSearch
-								options={uniqueProfessors.map((professor) => ({
-									label: professor,
-									value: professor,
-								}))}
-							/>
-						</Form.Item>
-					</Form>
+						Enroll Now!
+					</Button>
 				</div>
+
+				<h3 className="text-xl sm:text-2xl font-semibold font-kreonSerif text-white text-center">
+					Search & Filter Course(s)
+				</h3>
+				<Form
+					size="large"
+					className="mb-6 flex flex-col md:flex-row md:gap-6 justify-center items-center"
+				>
+					{/* Search by name */}
+					<Form.Item name="courseName" className="w-full">
+						<Input
+							id="courseName"
+							suffix={<SearchOutlined />}
+							placeholder="Search Course by Course Title"
+							onChange={(e) => setSearchTerm(e.target.value)}
+							className="w-full max-w-md"
+							allowClear
+						/>
+					</Form.Item>
+
+					{/* Filter by department */}
+					<Form.Item name="department" className="w-full">
+						<Select
+							id="department"
+							suffixIcon={<AppstoreOutlined />}
+							placeholder="Filter Course by Department"
+							value={selectedDepartment}
+							onChange={(value) => setSelectedDepartment(value)}
+							className="w-full max-w-md"
+							allowClear
+							showSearch
+							options={uniqueDepartments.map((department) => ({
+								label: department,
+								value: department,
+							}))}
+						/>
+					</Form.Item>
+
+					{/* Filter by professor */}
+					<Form.Item name="professor" className="w-full">
+						<Select
+							id="professor"
+							suffixIcon={<BookOutlined />}
+							placeholder="Filter Course by Professor"
+							value={selectedProfessor}
+							onChange={(value) => setSelectedProfessor(value)}
+							className="w-full max-w-md"
+							allowClear
+							showSearch
+							options={uniqueProfessors.map((professor) => ({
+								label: professor,
+								value: professor,
+							}))}
+						/>
+					</Form.Item>
+				</Form>
 			</div>
+
+			{/* Modal to Show Enrollment Form */}
+			<EnrollModal
+				open={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+				setCourses={setCourses}
+				sortedCourses={sortedCourses}
+			/>
 
 			<h3 className="text-xl sm:text-2xl font-semibold font-kreonSerif text-white text-center mb-6">
 				Available Courses to Enroll: {sortedCourses.length}

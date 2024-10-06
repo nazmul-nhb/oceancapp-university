@@ -25,7 +25,7 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 	const courseOptions = sortedCourses.map((course) => {
 		return {
 			value: course.courseId,
-			label: `${course.courseName} - ${course.credits} Credits`,
+			label: `${course.courseName} - ${course.courseId}`,
 		};
 	});
 
@@ -88,110 +88,107 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 	};
 
 	return (
-		<>
-			{/* Course Registration Form */}
-			<Form
-				size="large"
-				className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-4"
-				form={form}
-				name="courseRegistration"
-				layout="vertical"
-				initialValues={{ studentName, studentEmail, studentId }}
-				onFinish={handleCourseEnrollment}
-				scrollToFirstError
+		<Form
+			size="large"
+			className="w-full space-y-4"
+			form={form}
+			name="courseRegistration"
+			layout="vertical"
+			initialValues={{ studentName, studentEmail, studentId }}
+			onFinish={handleCourseEnrollment}
+			scrollToFirstError
+		>
+			<Form.Item
+				name="studentName"
+				rules={[
+					{
+						required: true,
+						message: "Please enter your name",
+					},
+				]}
 			>
-				<Form.Item
-					name="studentName"
-					rules={[
-						{
-							required: true,
-							message: "Please enter your name",
-						},
-					]}
-				>
-					<Input
-						// defaultValue={name}
-						allowClear
-						id="studentName"
-						placeholder="Enter your full name"
-					/>
-				</Form.Item>
+				<Input
+					// defaultValue={name}
+					allowClear
+					id="studentName"
+					placeholder="Enter your full name"
+				/>
+			</Form.Item>
 
-				<Form.Item
-					name="studentEmail"
-					rules={[
-						{
-							required: true,
-							message: "Please enter your email",
-						},
-						{
-							type: "email",
-							message: "Please enter a valid email",
-						},
-					]}
-				>
-					<Input
-						// defaultValue={studentEmail}
-						allowClear
-						id="studentEmail"
-						placeholder="Enter your email"
-					/>
-				</Form.Item>
+			<Form.Item
+				name="studentEmail"
+				rules={[
+					{
+						required: true,
+						message: "Please enter your email",
+					},
+					{
+						type: "email",
+						message: "Please enter a valid email",
+					},
+				]}
+			>
+				<Input
+					// defaultValue={studentEmail}
+					allowClear
+					id="studentEmail"
+					placeholder="Enter your email"
+				/>
+			</Form.Item>
 
-				<Form.Item
-					name="studentId"
-					rules={[
-						{
-							required: true,
-							message: "Please enter your student id",
-						},
-					]}
-				>
-					<Input
-						// defaultValue={studentId}
-						allowClear
-						id="studentId"
-						placeholder="Enter your student id"
-					/>
-				</Form.Item>
+			<Form.Item
+				name="studentId"
+				rules={[
+					{
+						required: true,
+						message: "Please enter your student id",
+					},
+				]}
+			>
+				<Input
+					// defaultValue={studentId}
+					allowClear
+					id="studentId"
+					placeholder="Enter your student id"
+				/>
+			</Form.Item>
 
-				<Form.Item
-					className="md:col-span-2"
-					name="courseIds"
-					rules={[
-						{
-							required: true,
-							message: "Pleas, select at least 1 course",
-						},
-					]}
-				>
-					<Select
-						id="courseIds"
-						mode="multiple"
-						maxCount={4}
-						placeholder="Select up to 4 Courses"
-						allowClear
-						value={selectedCourses}
-						onChange={setSelectedCourses}
-						suffixIcon={suffix}
-						options={courseOptions}
-						filterOption={(input, option) => {
-							// Ensure a boolean return type
-							if (!option) return false; // If option is undefined, return false
-							return option.label
-								.toLowerCase()
-								.includes(input.toLowerCase());
-						}}
-					/>
-				</Form.Item>
+			<Form.Item
+				className="md:col-span-2"
+				name="courseIds"
+				rules={[
+					{
+						required: true,
+						message: "Pleas, select at least 1 course",
+					},
+				]}
+			>
+				<Select
+					id="courseIds"
+					mode="multiple"
+					maxCount={4}
+					placeholder="Select up to 4 Courses"
+					allowClear
+					value={selectedCourses}
+					onChange={setSelectedCourses}
+					suffixIcon={suffix}
+					options={courseOptions}
+					filterOption={(input, option) => {
+						// Ensure a boolean return type
+						if (!option) return false; // If option is undefined, return false
+						return option.label
+							.toLowerCase()
+							.includes(input.toLowerCase());
+					}}
+				/>
+			</Form.Item>
 
-				<Form.Item>
-					<Button type="primary" htmlType="submit">
-						Enroll Now
-					</Button>
-				</Form.Item>
-			</Form>
-		</>
+			<Form.Item>
+				<Button type="primary" htmlType="submit">
+					Enroll Now
+				</Button>
+			</Form.Item>
+		</Form>
 	);
 };
 
