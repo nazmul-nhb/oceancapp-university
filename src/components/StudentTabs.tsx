@@ -9,6 +9,7 @@ import {
 	CalendarOutlined,
 } from "@ant-design/icons";
 import Courses from "./Courses";
+import { calculateTotalCredits } from "../utilities/utilities";
 
 interface TabProps {
 	currentCourses: Course[];
@@ -36,7 +37,8 @@ const StudentTabs: React.FC<TabProps> = ({
 				children: (
 					<>
 						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
-							Courses You Enrolled this Semester
+							Courses You Enrolled this Semester:&nbsp;
+							{calculateTotalCredits(currentCourses)} Credits
 						</h3>
 						<Courses isCurrent={true} courses={currentCourses} />
 					</>
@@ -52,7 +54,8 @@ const StudentTabs: React.FC<TabProps> = ({
 				children: (
 					<>
 						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
-							Courses You Already Finished
+							Courses You Already Finished:&nbsp;
+							{calculateTotalCredits(finishedCourses)} Credits
 						</h3>
 						<Courses isFinished={true} courses={finishedCourses} />
 					</>
