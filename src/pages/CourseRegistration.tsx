@@ -83,66 +83,87 @@ const CourseRegistration: React.FC = () => {
 			<Helmet>
 				<title>Enroll in Courses - OceanCapp University</title>
 			</Helmet>
+			<div className="bg-bannerBG bg-cover bg-no-repeat bg-bottom shadow-oceancapp-primary shadow-lg rounded-lg p-8 mb-12 space-y-6">
+				{/* Registration & Search/Filter Banner */}
+				<div className="w-full lg:w-4/5 flex flex-col gap-6 items-center justify-center mx-auto">
+					<h3 className="text-xl sm:text-2xl font-semibold font-kreonSerif text-white text-center">
+						Enroll in Your Desired Courses
+					</h3>
+					<EnrollForm
+						setCourses={setCourses}
+						sortedCourses={sortedCourses}
+					/>
+				</div>
 
-			<h2 className="text-2xl mb-5">Course Registration</h2>
+				{/* Filtering Section */}
+				<div className="flex flex-col gap-6 items-center justify-center">
+					<h3 className="text-xl sm:text-2xl font-semibold font-kreonSerif text-white text-center">
+						Search & Filter Course(s)
+					</h3>
+					<Form
+						size="large"
+						className="mb-6 w-full lg:w-4/5 flex flex-col md:flex-row md:gap-6 justify-center items-center"
+					>
+						{/* Search by name */}
+						<Form.Item name="courseName" className="w-full">
+							<Input
+								id="courseName"
+								suffix={<SearchOutlined />}
+								placeholder="Search Course by Course Title"
+								onChange={(e) => setSearchTerm(e.target.value)}
+								className="w-full max-w-md"
+								allowClear
+							/>
+						</Form.Item>
 
-			<EnrollForm setCourses={setCourses} sortedCourses={sortedCourses} />
+						{/* Filter by department */}
+						<Form.Item name="department" className="w-full">
+							<Select
+								id="department"
+								suffixIcon={<AppstoreOutlined />}
+								placeholder="Filter Course by Department"
+								value={selectedDepartment}
+								onChange={(value) =>
+									setSelectedDepartment(value)
+								}
+								className="w-full max-w-md"
+								allowClear
+								showSearch
+								options={uniqueDepartments.map(
+									(department) => ({
+										label: department,
+										value: department,
+									})
+								)}
+							/>
+						</Form.Item>
 
-			<h3 className="text-xl mt-10 mb-3">
+						{/* Filter by professor */}
+						<Form.Item name="professor" className="w-full">
+							<Select
+								id="professor"
+								suffixIcon={<BookOutlined />}
+								placeholder="Filter Course by Professor"
+								value={selectedProfessor}
+								onChange={(value) =>
+									setSelectedProfessor(value)
+								}
+								className="w-full max-w-md"
+								allowClear
+								showSearch
+								options={uniqueProfessors.map((professor) => ({
+									label: professor,
+									value: professor,
+								}))}
+							/>
+						</Form.Item>
+					</Form>
+				</div>
+			</div>
+
+			<h3 className="text-xl sm:text-2xl font-semibold font-kreonSerif text-white text-center mb-6">
 				Available Courses to Enroll: {sortedCourses.length}
 			</h3>
-
-			{/* Filtering Section */}
-			<Form className="mb-6 flex flex-col md:flex-row md:gap-6 justify-center items-center">
-				{/* Search by name */}
-				<Form.Item name="courseName" className="w-full">
-					<Input
-						id="courseName"
-						suffix={<SearchOutlined />}
-						placeholder="Search Course by Course Title"
-						onChange={(e) => setSearchTerm(e.target.value)}
-						className="w-full max-w-md"
-						allowClear
-					/>
-				</Form.Item>
-
-				{/* Filter by department */}
-				<Form.Item name="department" className="w-full">
-					<Select
-						id="department"
-						suffixIcon={<AppstoreOutlined />}
-						placeholder="Filter Course by Department"
-						value={selectedDepartment}
-						onChange={(value) => setSelectedDepartment(value)}
-						className="w-full max-w-md"
-						allowClear
-						showSearch
-						options={uniqueDepartments.map((department) => ({
-							label: department,
-							value: department,
-						}))}
-					/>
-				</Form.Item>
-
-				{/* Filter by professor */}
-				<Form.Item name="professor" className="w-full">
-					<Select
-						id="professor"
-						suffixIcon={<BookOutlined />}
-						placeholder="Filter Course by Professor"
-						value={selectedProfessor}
-						onChange={(value) => setSelectedProfessor(value)}
-						className="w-full max-w-md"
-						allowClear
-						showSearch
-						options={uniqueProfessors.map((professor) => ({
-							label: professor,
-							value: professor,
-						}))}
-					/>
-				</Form.Item>
-			</Form>
-
 			{/* Show loading spinner */}
 			{loading ? (
 				<Flex align="center" justify="center" gap="middle">

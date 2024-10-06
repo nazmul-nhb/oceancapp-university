@@ -45,8 +45,8 @@ const FacultyOverview: React.FC = () => {
 				<title>Faculty Overview - OceanCapp University</title>
 			</Helmet>
 			{/* Search/Filter Banner */}
-			<div className="bg-bannerBG bg-cover bg-no-repeat shadow-oceancapp-primary shadow-lg rounded-lg py-12 lg:px-12 px-4 mb-12 space-y-10">
-				<h3 className="text-2xl font-semibold font-kreonSerif text-white text-center">
+			<div className="bg-bannerBG bg-cover bg-no-repeat shadow-oceancapp-primary shadow-lg rounded-lg p-8 mb-12 space-y-10">
+				<h3 className="text-xl sm:text-2xl font-semibold font-kreonSerif text-white text-center">
 					Find Your Professor
 				</h3>
 				{/* Filters */}
@@ -120,7 +120,7 @@ const FacultyOverview: React.FC = () => {
 			</div>
 			{/* Faculty List */}
 			<div className="flex justify-center w-full">
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mx-auto">
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-10 mx-auto">
 					{filteredFaculty.map((faculty, index) => (
 						<FacultyCard
 							key={faculty.facultyId}

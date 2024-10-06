@@ -91,7 +91,8 @@ const EnrollForm: React.FC<EnrollCourseProps> = ({
 		<>
 			{/* Course Registration Form */}
 			<Form
-				className="grid md:grid-cols-2 xl:grid-cols-3 gap-4"
+				size="large"
+				className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-4"
 				form={form}
 				name="courseRegistration"
 				layout="vertical"
