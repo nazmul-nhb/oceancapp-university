@@ -27,7 +27,7 @@ const FacultyOverview: React.FC = () => {
 		return facultyList.filter((faculty: Faculty) => {
 			const matchesName = faculty.facultyName
 				.toLowerCase()
-				.includes(searchTerm.toLowerCase());
+				.includes(searchTerm.trim().toLowerCase());
 			const matchesDesignation = selectedDesignation
 				? faculty.designation === selectedDesignation.trim()
 				: true;

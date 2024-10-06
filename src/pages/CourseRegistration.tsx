@@ -48,7 +48,7 @@ const CourseRegistration: React.FC = () => {
 	const filteredCourses = courses.filter((course: Course) => {
 		const matchesName = course.courseName
 			.toLowerCase()
-			.includes(searchTerm.toLowerCase());
+			.includes(searchTerm.trim().toLowerCase());
 		const matchesDepartment = selectedDepartment
 			? course.department === selectedDepartment.trim()
 			: true;
@@ -94,6 +94,7 @@ const CourseRegistration: React.FC = () => {
 			{/* Search/Filter Banner */}
 			<div className="bg-bannerBG bg-cover bg-no-repeat shadow-oceancapp-primary shadow-lg rounded-lg p-8 mb-12 space-y-10">
 				<div className="flex items-center justify-center">
+					{/* Enroll Now Button */}
 					<Button
 						className="text-lg font-bold font-kreonSerif animate-bounce hover:animate-none"
 						size="large"
@@ -103,7 +104,7 @@ const CourseRegistration: React.FC = () => {
 						Enroll Now!
 					</Button>
 				</div>
-
+				{/* Search/Filter Starts */}
 				<h3 className="text-xl sm:text-2xl font-semibold font-kreonSerif text-white text-center">
 					Search & Filter Course(s)
 				</h3>

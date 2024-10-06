@@ -40,7 +40,7 @@ const Courses: React.FC<CoursesProps> = ({
 									 !shadow-blue-600 !shadow-md hover:!shadow-blue-800 transition-shadow duration-300
 							`}
 							key={course.courseId}
-							style={{ margin: "8px 0", maxWidth: 320 }}
+							style={{ margin: "8px 0", minWidth:300, maxWidth: 320 }}
 							title={
 								<Popover
 									content={

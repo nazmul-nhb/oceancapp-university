@@ -38,7 +38,7 @@ const StudentTabs: React.FC<TabProps> = ({
 					<>
 						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
 							You Enrolled {currentCourses.length} Courses this
-							Semester with &nbsp;
+							Semester with&nbsp;
 							{calculateTotalCredits(currentCourses)} Credits
 						</h3>
 						<Courses isCurrent={true} courses={currentCourses} />
