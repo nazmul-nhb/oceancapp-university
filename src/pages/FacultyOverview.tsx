@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Form, Input, Select } from "antd";
 import { facultyList } from "../data/faculty";
 import type { Faculty } from "../types/interfaces";
@@ -23,19 +23,21 @@ const FacultyOverview: React.FC = () => {
 	).sort();
 
 	// Filter faculty members based on the search term and selected options
-	const filteredFaculty = facultyList.filter((faculty: Faculty) => {
-		const matchesName = faculty.facultyName
-			.toLowerCase()
-			.includes(searchTerm.toLowerCase());
-		const matchesDesignation = selectedDesignation
-			? faculty.designation === selectedDesignation.trim()
-			: true;
-		const matchesSubject = selectedSubject
-			? faculty.subjects.includes(selectedSubject.trim())
-			: true;
+	const filteredFaculty = useMemo(() => {
+		return facultyList.filter((faculty: Faculty) => {
+			const matchesName = faculty.facultyName
+				.toLowerCase()
+				.includes(searchTerm.toLowerCase());
+			const matchesDesignation = selectedDesignation
+				? faculty.designation === selectedDesignation.trim()
+				: true;
+			const matchesSubject = selectedSubject
+				? faculty.subjects.includes(selectedSubject.trim())
+				: true;
 
-		return matchesName && matchesDesignation && matchesSubject;
-	});
+			return matchesName && matchesDesignation && matchesSubject;
+		});
+	}, [searchTerm, selectedDesignation, selectedSubject]);
 
 	return (
 		<section className="min-h-[calc(100vh-64px)] px-8 py-5">
