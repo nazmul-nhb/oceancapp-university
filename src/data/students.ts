@@ -82,7 +82,7 @@ export const studentData: StudentData = {
 			courseId: "HIST101",
 			courseName: "World History I",
 			professorName: "Dr. Edward Said",
-			professorEmail: "aeinstein@oceancapp.uni.edu",
+			professorEmail: "esaid@oceancapp.uni.edu",
 			grade: "A-",
 			credits: 3,
 			semester: "Spring 2023",

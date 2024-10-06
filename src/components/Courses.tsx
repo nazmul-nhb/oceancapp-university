@@ -7,6 +7,7 @@ import {
 	BookOutlined,
 	StarOutlined,
 	UserAddOutlined,
+	AppstoreOutlined,
 	ClockCircleOutlined,
 } from "@ant-design/icons";
 
@@ -14,15 +15,17 @@ interface CoursesProps {
 	courses: Course[];
 	isCurrent?: boolean;
 	isFinished?: boolean;
+	isRegister?: boolean;
 }
 
 const Courses: React.FC<CoursesProps> = ({
 	courses,
 	isCurrent,
 	isFinished,
+	isRegister,
 }) => {
 	return (
-		<div className="grid grid-cols-4 gap-5">
+		<div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 			{courses.map((course) => {
 				const color = getColorForFirstCharacter(
 					course.professorName.split(" ")[1].split("")[1]
@@ -37,12 +40,38 @@ const Courses: React.FC<CoursesProps> = ({
 						}
 						hoverable
 						bordered={false}
-						className="bg-oceancapp-secondary"
+						className={
+							isRegister
+								? "bg-oceancapp-secondary"
+								: "bg-oceancapp-primary"
+						}
 						key={course.courseId}
 						style={{ margin: "8px 0" }}
 						title={
 							<Popover
-								content={`${course.courseName} - ${course.courseId}`}
+								content={
+									isRegister ? (
+										<ul>
+											<li>
+												<strong>
+													{course.courseName}
+												</strong>
+												&nbsp;-&nbsp;
+												{course.courseId}
+											</li>
+											<li>
+												<strong>Capacity:</strong>
+												&nbsp;{course?.capacity}
+											</li>
+											<li>
+												<strong>Enrolled:</strong>
+												&nbsp;{course?.enrolled}
+											</li>
+										</ul>
+									) : (
+										`${course.courseName} - ${course.courseId}`
+									)
+								}
 							>
 								<span
 									style={{ color: "white", fontSize: "18px" }}
@@ -69,12 +98,13 @@ const Courses: React.FC<CoursesProps> = ({
 									{course.professorName}
 								</p>
 							</Popover>
-							<p className="">
+							<p>
 								<BookOutlined style={{ marginRight: 8 }} />
 								{course.credits} Credits
 							</p>
+
 							{isCurrent && (
-								<p className="">
+								<p>
 									<ClockCircleOutlined
 										style={{ marginRight: 8 }}
 									/>
@@ -84,19 +114,28 @@ const Courses: React.FC<CoursesProps> = ({
 
 							{isFinished && (
 								<>
-									<p className="">
+									<p>
 										<ClockCircleOutlined
 											style={{ marginRight: 8 }}
 										/>
 										{course?.semester}
 									</p>
-									<p className="">
+									<p>
 										<StarOutlined
 											style={{ marginRight: 8 }}
 										/>
 										Grade: {course?.grade}
 									</p>
 								</>
+							)}
+
+							{isRegister && (
+								<p>
+									<AppstoreOutlined
+										style={{ marginRight: 8 }}
+									/>
+									{course?.department} Department
+								</p>
 							)}
 						</div>
 					</Card>

@@ -137,7 +137,7 @@ export const facultyList: Faculty[] = [
 		designation: "Professor",
 		subjects: ["English Fundamentals"],
 		officeHours: "Mon, Wed 10:00 AM - 12:00 PM",
-		contactEmail: "aeinstein@oceancapp.uni.edu",
+		contactEmail: "nchomsky@oceancapp.uni.edu",
 	},
 	{
 		facultyId: "f0009",

@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import EnrollForm from "../components/EnrollForm";
 import { getRegisteredCourses } from "../utilities/localStorage";
 import { studentData } from "../data/students";
+import Courses from "../components/Courses";
 
 const CourseRegistration: React.FC = () => {
 	const { finishedCourses } = studentData;
@@ -45,19 +46,7 @@ const CourseRegistration: React.FC = () => {
 			<h3 className="text-xl mt-10 mb-3">
 				Available Courses to Enroll: {sortedCourses.length}
 			</h3>
-			<div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-				{sortedCourses.map((course) => (
-					<div
-						key={course.courseId}
-						className="mb-3 p-4 border rounded-md hover:bg-gray-100"
-					>
-						<h4 className="text-lg">{course.courseName}</h4>
-						<p>Professor: {course.professorName}</p>
-						<p>Credits: {course.credits}</p>
-						<p>Department: {course.department}</p>
-					</div>
-				))}
-			</div>
+			<Courses isRegister={true} courses={sortedCourses} />
 		</section>
 	);
 };

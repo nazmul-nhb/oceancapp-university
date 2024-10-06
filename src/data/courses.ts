@@ -770,7 +770,7 @@ export const coursesData: Course[] = [
 		courseId: "ENG101",
 		courseName: "English Fundamentals",
 		professorName: "Dr. Noam Chomsky",
-		professorEmail: "aeinstein@oceancapp.uni.edu",
+		professorEmail: "nchomsky@oceancapp.uni.edu",
 		credits: 3,
 		duration: "4 months",
 		department: "English",
