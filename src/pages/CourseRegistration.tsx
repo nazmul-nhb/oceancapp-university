@@ -125,11 +125,11 @@ const CourseRegistration: React.FC = () => {
 				</Form.Item>
 
 				{/* Filter by professor */}
-				<Form.Item name="subject" className="w-full">
+				<Form.Item name="professor" className="w-full">
 					<Select
-						id="subject"
+						id="professor"
 						suffixIcon={<BookOutlined />}
-						placeholder="Filter Course by Subject"
+						placeholder="Filter Course by Professor"
 						value={selectedProfessor}
 						onChange={(value) => setSelectedProfessor(value)}
 						className="w-full max-w-md"
