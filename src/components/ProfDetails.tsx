@@ -56,20 +56,23 @@ const ProfDetails: React.FC<ProfDetailsProps> = ({ email }) => {
 						type="link"
 						href={`https://api.whatsapp.com/send?phone=&text=Hello ${profDetails.facultyName}`}
 						target="_blank"
-						icon={<WhatsAppOutlined />}
+						icon={<WhatsAppOutlined style={{ color: "#fff" }} />}
+						className="hover:animate-bounce"
 					/>,
 					<Button
 						key={"facebook"}
 						type="link"
 						href={`https://www.facebook.com/nazmul.batchu`}
 						target="_blank"
-						icon={<FacebookFilled />}
+						icon={<FacebookFilled style={{ color: "#fff" }} />}
+						className="hover:animate-bounce"
 					/>,
 					<Button
 						key={"email"}
 						type="link"
 						href={`mailto:${profDetails.contactEmail}`}
-						icon={<MailOutlined />}
+						icon={<MailOutlined style={{ color: "#fff" }} />}
+						className="hover:animate-bounce"
 					/>,
 				]}
 			>
