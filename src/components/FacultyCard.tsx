@@ -38,6 +38,7 @@ const FacultyCard: React.FC<FacultyProps> = ({ index, faculty }) => {
 
 	return (
 		<Card
+			className="shadow-oceancapp-secondary shadow-lg hover:shadow-xl transition-shadow duration-300"
 			style={{ backgroundColor: bgColor, maxWidth: 320 }}
 			actions={[
 				<Button type="primary" key={index} onClick={handleOpenModal}>
@@ -79,6 +80,7 @@ const FacultyCard: React.FC<FacultyProps> = ({ index, faculty }) => {
 			<ProfileModal
 				faculty={faculty}
 				index={index}
+				bgColor={bgColor}
 				open={isModalOpen}
 				onClose={() => setIsModalOpen(false)}
 			/>

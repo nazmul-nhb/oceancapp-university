@@ -34,13 +34,11 @@ const Courses: React.FC<CoursesProps> = ({
 
 					return (
 						<Card
-							hoverable
 							bordered={false}
-							className={
-								isRegister
-									? "bg-oceancapp-secondary"
-									: "bg-oceancapp-primary"
-							}
+							className={`
+								${isRegister ? "bg-oceancapp-secondary" : "bg-oceancapp-primary"}
+									 !shadow-blue-600 !shadow-md hover:!shadow-blue-800 transition-shadow duration-300
+							`}
 							key={course.courseId}
 							style={{ margin: "8px 0", maxWidth: 320 }}
 							title={
@@ -69,21 +67,13 @@ const Courses: React.FC<CoursesProps> = ({
 										)
 									}
 								>
-									<span
-										style={{
-											color: "white",
-											fontSize: "18px",
-										}}
-									>
+									<span className="text-white text-lg cursor-pointer">
 										{course.courseName}
 									</span>
 								</Popover>
 							}
 						>
-							<div
-								className="space-y-2"
-								style={{ color: "white" }}
-							>
+							<div className="space-y-2 text-white">
 								<Popover
 									color={color}
 									content={

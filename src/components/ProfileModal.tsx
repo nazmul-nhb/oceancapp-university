@@ -1,12 +1,15 @@
 import React, { useRef, useState } from "react";
-import { Modal } from "antd";
+import { Modal, Card, Row } from "antd";
+import { ClockCircleOutlined, MailOutlined } from "@ant-design/icons";
 import Draggable from "react-draggable";
 import type { DraggableData, DraggableEvent } from "react-draggable";
 import type { Faculty } from "../types/interfaces";
+import SubjectsTags from "./SubjectsTags";
 
 interface ProfileModalProps {
 	faculty: Faculty;
 	index: number;
+	bgColor: string;
 	open: boolean;
 	onClose: () => void;
 }
@@ -14,6 +17,7 @@ interface ProfileModalProps {
 const ProfileModal: React.FC<ProfileModalProps> = ({
 	faculty,
 	index,
+	bgColor,
 	open,
 	onClose,
 }) => {
@@ -85,31 +89,47 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 			)}
 		>
 			{/* Contents */}
-			<div style={{ textAlign: "center", marginBottom: "16px" }}>
-				<img
-					src={imageUrl}
-					alt={`${facultyName}`}
-					style={{
-						borderRadius: "50%",
-						width: "120px",
-						height: "120px",
-						objectFit: "cover",
-					}}
-				/>
-			</div>
-			<h2>{designation}</h2>
-			<h3>Subjects:</h3>
-			<ul>
-				{subjects.map((subject, idx) => (
-					<li key={idx}>{subject}</li>
-				))}
-			</ul>
-			<p>
-				<strong>Office Hours:</strong> {officeHours}
-			</p>
-			<p>
-				<strong>Contact Email:</strong> {contactEmail}
-			</p>
+			<Card
+				style={{
+					backgroundColor: bgColor,
+					borderRadius: "8px",
+					marginBottom: "16px",
+				}}
+			>
+				<div className="flex flex-col md:flex-row items-center gap-5">
+					<img
+						src={imageUrl}
+						alt={facultyName}
+						style={{
+							borderRadius: "50%",
+							width: "120px",
+							height: "120px",
+							objectFit: "cover",
+							marginRight: "16px",
+						}}
+					/>
+					<div className="flex-1 font-semibold">
+						<h2 className="m-0 text-lg font-kreonSerif">
+							{designation} {facultyName}
+						</h2>
+						<Row style={{ marginTop: "16px" }}>
+							<span>
+								<ClockCircleOutlined
+									style={{ marginRight: 8 }}
+								/>
+								{officeHours}
+							</span>
+						</Row>
+						<Row style={{ marginTop: "16px" }}>
+							<span>
+								<MailOutlined style={{ marginRight: 8 }} />
+								<a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+							</span>
+						</Row>
+					</div>
+				</div>
+			</Card>
+			<SubjectsTags subjects={subjects} />
 		</Modal>
 	);
 };
