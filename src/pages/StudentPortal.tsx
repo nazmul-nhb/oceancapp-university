@@ -53,7 +53,7 @@ const StudentPortal: React.FC = () => {
 			</Helmet>
 			<div className="container mx-auto">
 				{/* Student Info Banner */}
-				<div className="bg-bannerBG bg-cover bg-no-repeat shadow-lg rounded-lg py-12 lg:px-12 px-4 flex flex-col lg:flex-row items-center gap-6 lg:gap-12 mb-8 relative">
+				<div className="bg-bannerBG bg-cover bg-no-repeat shadow-oceancapp-primary shadow-lg rounded-lg py-12 lg:px-12 px-4 flex flex-col lg:flex-row items-center gap-6 lg:gap-12 mb-8 relative">
 					<Image
 						width={180}
 						src={studentImage}

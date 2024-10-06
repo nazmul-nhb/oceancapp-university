@@ -79,7 +79,8 @@ const Events: React.FC<{ events: Event[] }> = ({ events }) => {
 				{events.map((event) => (
 					<li key={event.eventId} className="space-x-2">
 						<Tooltip title="Add to Calendar">
-							<Button
+							<Button 
+							className="animate-pulse"
 								size="small"
 								shape="circle"
 								icon={<ScheduleOutlined />}

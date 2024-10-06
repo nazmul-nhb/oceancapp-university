@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
 						? "w-full"
 						: "-translate-x-full w-0 md:w-full md:translate-x-0"
 				}
-					md:block h-[calc(100vh-64px)] overflow-y-auto transition-all duration-1000 overflow-x-hidden absolute top-16 backdrop-filter backdrop-blur-sm bg-oceancapp-primary/85 z-10`}
+					md:block h-[calc(100vh-64px)] overflow-y-auto transition-all duration-500 overflow-x-hidden absolute top-16 backdrop-filter backdrop-blur-sm bg-oceancapp-primary/85 z-10`}
 				collapsible
 				collapsed={collapsed}
 				onCollapse={(value) => setCollapsed(value)}

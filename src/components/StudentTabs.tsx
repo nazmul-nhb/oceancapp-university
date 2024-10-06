@@ -30,14 +30,15 @@ const StudentTabs: React.FC<TabProps> = ({
 			{
 				key: "current-courses",
 				label: (
-					<span>
+					<span className="text-lg font-semibold">
 						<BookOutlined /> Current Courses
 					</span>
 				),
 				children: (
 					<>
 						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
-							Courses You Enrolled this Semester:&nbsp;
+							You Enrolled {currentCourses.length} Courses this
+							Semester with &nbsp;
 							{calculateTotalCredits(currentCourses)} Credits
 						</h3>
 						<Courses isCurrent={true} courses={currentCourses} />
@@ -47,14 +48,15 @@ const StudentTabs: React.FC<TabProps> = ({
 			{
 				key: "finished-courses",
 				label: (
-					<span>
+					<span className="text-lg font-semibold">
 						<CheckCircleOutlined /> Finished Courses
 					</span>
 				),
 				children: (
 					<>
 						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
-							Courses You Already Finished:&nbsp;
+							You Already Finished {finishedCourses.length}
+							&nbsp;Courses with&nbsp;
 							{calculateTotalCredits(finishedCourses)} Credits
 						</h3>
 						<Courses isFinished={true} courses={finishedCourses} />
@@ -64,12 +66,15 @@ const StudentTabs: React.FC<TabProps> = ({
 			{
 				key: "upcoming-events",
 				label: (
-					<span>
+					<span className="text-lg font-semibold">
 						<CalendarOutlined /> Upcoming Events
 					</span>
 				),
 				children: (
 					<>
+						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
+							You have {upcomingEvents.length} Upcoming Events
+						</h3>
 						<h3 className="text-xl mb-4 font-semibold font-kreonSerif">
 							Add Events to Your Calendar
 						</h3>

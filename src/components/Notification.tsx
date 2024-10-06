@@ -18,7 +18,7 @@ const Notification: React.FC = () => {
 	const [newNotificationIds, setNewNotificationIds] = useState<Set<string>>(
 		new Set()
 	);
-	
+
 	// Get maximum 3 notifications to avoid stack overflow
 	const events = upcomingEvents.slice(0, 2);
 
@@ -36,7 +36,7 @@ const Notification: React.FC = () => {
 			});
 		};
 
-		// Show the first notification only on initial render
+		// Show the first notification on initial render
 		if (initialLoadRef.current && events.length > 0) {
 			const currentEvent = events[notificationIndexRef.current];
 			showNotification(currentEvent);
@@ -48,7 +48,7 @@ const Notification: React.FC = () => {
 			initialLoadRef.current = false; // Set to false after the first load
 		}
 
-		// Show subsequent notifications every 5 mins
+		// Show subsequent notifications every 3 mins
 		const intervalId = setInterval(() => {
 			if (notificationIndexRef.current < events.length) {
 				const currentEvent = events[notificationIndexRef.current];
@@ -59,7 +59,7 @@ const Notification: React.FC = () => {
 				);
 				notificationIndexRef.current++;
 			}
-		}, 300000); // 300000 for 5 mins
+		}, 180000); // 180000 for 3 mins
 		// Cleanup on component unmount
 		return () => clearInterval(intervalId);
 	}, [api, events]);
