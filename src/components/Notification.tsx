@@ -1,6 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Badge, FloatButton, Dropdown, notification, Button } from "antd";
-import { BellOutlined, CommentOutlined, DeleteTwoTone } from "@ant-design/icons";
+import {
+	BellOutlined,
+	CommentOutlined,
+	DeleteTwoTone,
+} from "@ant-design/icons";
 import { Event } from "../types/interfaces";
 import { studentData } from "../data/students";
 import { formatDate } from "../utilities/utilities";
@@ -9,11 +13,14 @@ import toast from "react-hot-toast";
 const Notification: React.FC = () => {
 	const { upcomingEvents } = studentData;
 	const [notifications, setNotifications] = useState<Event[]>([]);
-    const [api, contextHolder] = notification.useNotification();
-    
+	const [api, contextHolder] = notification.useNotification();
+
 	const [newNotificationIds, setNewNotificationIds] = useState<Set<string>>(
 		new Set()
 	);
+	
+	// Get maximum 3 notifications to avoid stack overflow
+	const events = upcomingEvents.slice(0, 2);
 
 	// Store notification index in a ref to prevent appearing multiple notifications
 	const notificationIndexRef = useRef(0);
@@ -23,15 +30,15 @@ const Notification: React.FC = () => {
 		const showNotification = (event: Event) => {
 			api.open({
 				message: event.title,
-				description: `${event.description} - ${formatDate(event.date)}`,
+				description: formatDate(event.date),
 				placement: "topRight",
 				duration: 3,
 			});
 		};
 
 		// Show the first notification only on initial render
-		if (initialLoadRef.current && upcomingEvents.length > 0) {
-			const currentEvent = upcomingEvents[notificationIndexRef.current];
+		if (initialLoadRef.current && events.length > 0) {
+			const currentEvent = events[notificationIndexRef.current];
 			showNotification(currentEvent);
 			setNotifications((prev) => [...prev, currentEvent]);
 			setNewNotificationIds((prev) =>
@@ -41,11 +48,10 @@ const Notification: React.FC = () => {
 			initialLoadRef.current = false; // Set to false after the first load
 		}
 
-		// Show subsequent notifications every 2 mins
+		// Show subsequent notifications every 5 mins
 		const intervalId = setInterval(() => {
-			if (notificationIndexRef.current < upcomingEvents.length) {
-				const currentEvent =
-					upcomingEvents[notificationIndexRef.current];
+			if (notificationIndexRef.current < events.length) {
+				const currentEvent = events[notificationIndexRef.current];
 				showNotification(currentEvent);
 				setNotifications((prev) => [...prev, currentEvent]);
 				setNewNotificationIds((prev) =>
@@ -53,10 +59,10 @@ const Notification: React.FC = () => {
 				);
 				notificationIndexRef.current++;
 			}
-		}, 120000); // 120000 for 2 mins
+		}, 300000); // 300000 for 5 mins
 		// Cleanup on component unmount
 		return () => clearInterval(intervalId);
-	}, [api, upcomingEvents]);
+	}, [api, events]);
 
 	// Function to handle notification click (mark as read)
 	const handleNotificationClick = (eventId: string) => {
