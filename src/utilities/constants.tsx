@@ -26,34 +26,25 @@ export const sidebarMenu: MenuItem[] = [
 	{
 		key: "sub1",
 		icon: <UserOutlined />,
-		label: "User",
+		label: "Dashboard",
 		children: [
 			{
 				key: "4",
-				label: <NavLink to="/user/tom">Tom</NavLink>,
+				label: (
+					<NavLink to="/#current-courses">Current Courses</NavLink>
+				),
 			},
 			{
 				key: "5",
-				label: <NavLink to="/user/bill">Bill</NavLink>,
+				label: (
+					<NavLink to="/#finished-courses">Finished Courses</NavLink>
+				),
 			},
 			{
 				key: "6",
-				label: <NavLink to="/user/alex">Alex</NavLink>,
-			},
-		],
-	},
-	{
-		key: "sub2",
-		icon: <TeamOutlined />,
-		label: "Team",
-		children: [
-			{
-				key: "7",
-				label: <NavLink to="/team/1">Team 1</NavLink>,
-			},
-			{
-				key: "8",
-				label: <NavLink to="/team/2">Team 2</NavLink>,
+				label: (
+					<NavLink to="/#upcoming-events">Upcoming Events</NavLink>
+				),
 			},
 		],
 	},
@@ -75,33 +66,26 @@ export const navbarMenu: MenuItem[] = [
 	},
 	{
 		key: "sub1",
-		label: "User",
+		icon: <UserOutlined />,
+		label: "Dashboard",
 		children: [
 			{
 				key: "4",
-				label: <NavLink to="/user/tom">Tom</NavLink>,
+				label: (
+					<NavLink to="/#current-courses">Current Courses</NavLink>
+				),
 			},
 			{
 				key: "5",
-				label: <NavLink to="/user/bill">Bill</NavLink>,
+				label: (
+					<NavLink to="/#finished-courses">Finished Courses</NavLink>
+				),
 			},
 			{
 				key: "6",
-				label: <NavLink to="/user/alex">Alex</NavLink>,
-			},
-		],
-	},
-	{
-		key: "sub2",
-		label: "Team",
-		children: [
-			{
-				key: "7",
-				label: <NavLink to="/team/1">Team 1</NavLink>,
-			},
-			{
-				key: "8",
-				label: <NavLink to="/team/2">Team 2</NavLink>,
+				label: (
+					<NavLink to="/#upcoming-events">Upcoming Events</NavLink>
+				),
 			},
 		],
 	},

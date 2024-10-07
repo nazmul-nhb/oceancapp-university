@@ -30,7 +30,7 @@ const StudentTabs: React.FC<TabProps> = ({
 			{
 				key: "current-courses",
 				label: (
-					<span className="text-lg font-semibold">
+					<span className="txt-base md:text-lg font-semibold">
 						<BookOutlined /> Current Courses
 					</span>
 				),
@@ -48,7 +48,7 @@ const StudentTabs: React.FC<TabProps> = ({
 			{
 				key: "finished-courses",
 				label: (
-					<span className="text-lg font-semibold">
+					<span className="txt-base md:text-lg font-semibold">
 						<CheckCircleOutlined /> Finished Courses
 					</span>
 				),
@@ -66,7 +66,7 @@ const StudentTabs: React.FC<TabProps> = ({
 			{
 				key: "upcoming-events",
 				label: (
-					<span className="text-lg font-semibold">
+					<span className="txt-base md:text-lg font-semibold">
 						<CalendarOutlined /> Upcoming Events
 					</span>
 				),
