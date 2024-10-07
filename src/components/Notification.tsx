@@ -152,7 +152,9 @@ const Notification: React.FC = () => {
 						count={newNotificationIds.size}
 						dot
 					>
-						<BellOutlined style={{ fontSize: "18px" }} />
+						<BellOutlined
+							style={{ color: "white", fontSize: "18px" }}
+						/>
 					</Badge>
 				}
 			>
