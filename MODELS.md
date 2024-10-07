@@ -5,7 +5,7 @@ This document outlines the TypeScript interfaces used in the OceanCapp Universit
 ## MenuItem Interface
 
 ```typescript
-export interface MenuItem {
+interface MenuItem {
     key: string;
     icon?: React.ReactNode;
     label: React.ReactNode | string;
@@ -26,7 +26,7 @@ export interface MenuItem {
 ## Course Interface
 
 ```typescript
-export interface Course {
+interface Course {
     courseId: string;
     courseName: string;
     professorName: string;
@@ -61,7 +61,7 @@ export interface Course {
 ## Event Interface
 
 ```typescript
-export interface Event {
+interface Event {
     eventId: string;
     title: string;
     date: Date;
@@ -82,7 +82,7 @@ export interface Event {
 ## StudentData Interface
 
 ```typescript
-export interface StudentData {
+interface StudentData {
     studentName: string;
     studentId: string;
     studentEmail: string;
@@ -115,7 +115,7 @@ export interface StudentData {
 ## Faculty Interface
 
 ```typescript
-export interface Faculty {
+interface Faculty {
     facultyId: string;
     facultyName: string;
     designation: string;
@@ -142,7 +142,7 @@ export interface Faculty {
 ## RegistrationInfo Interface
 
 ```typescript
-export interface RegistrationInfo {
+interface RegistrationInfo {
     studentName: string;
     email: string;
     courseIds: string[];

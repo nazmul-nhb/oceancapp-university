@@ -2,6 +2,8 @@
 
 Welcome to the **OceanCapp University Management System**! This project is a comprehensive, user-friendly interface designed to simulate key aspects of managing a university, built with attention to detail, mobile responsiveness, and subtle interactive features to enhance the user experience. The project includes three main pages: `Student Dashboard`, `Faculty Overview`, and `Course Registration`, each offering dynamic functionality to mimic real-world university operations.
 
+- [Live URL](https://nhb-oceancapp-university.vercel.app/)
+
 ## Project Overview
 
 ### Pages
@@ -105,12 +107,6 @@ To run this project locally, follow these steps:
 The project is hosted live on Vercel. You can view the live application here:
 
 **Live URL:** [https://nhb-oceancapp-university.vercel.app/](https://nhb-oceancapp-university.vercel.app/)
-
-### GitHub Repository
-
-The source code for this project is available on GitHub. Feel free to explore and contribute!
-
-**GitHub Repository:** [https://github.com/nazmul-nhb/oceancapp-university](https://github.com/nazmul-nhb/oceancapp-university)
 
 ### Future Enhancements
 
